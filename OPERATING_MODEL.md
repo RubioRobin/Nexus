@@ -14,9 +14,10 @@ Build and ship production-ready Revit add-ins and web automations with a target 
 
 ## GO / NO-GO Rule
 1. 08:00 daily brief to Robin (Telegram)
-2. Robin replies GO/NO GO
+2. Robin replies GO/NO GO **via Telegram only**
 3. Only after GO: implementation/release flow starts.
 4. NO GO: research/planning/refinement only.
+5. Trello card movement is advisory; Telegram decision is the source of truth.
 
 ## Core Flow
 1. Intake/problem
