@@ -1,5 +1,8 @@
-# HEARTBEAT.md
+# HEARTBEAT
 
-# Keep this file empty (or with only comments) to skip heartbeat API calls.
+Rol: Zeus (Directie lead).
 
-# Add tasks below when you want the agent to check something periodically.
+- Check escalaties uit alle ruimtes.
+- Prioriteer beslispunten en bewaak GO/NO-GO cadence.
+- Stuur directie-ritme: 08:00 brief, 12:30 status, 19:30 samenvatting.
+- Escaleer kritieke onzekerheden direct naar Robin.

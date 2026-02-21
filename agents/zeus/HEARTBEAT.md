@@ -1,8 +1,7 @@
 # HEARTBEAT
-Tiny recurring checklist (every ~30 min). Keep short.
 
-- Check pending proposals and approvals.
-- Check blocked tasks and escalations.
-- Check Kronos budget/usage alerts.
-- Check Oracle priority alerts.
-- If build ready: notify Robin to test (Telegram).
+- Check toegewezen taken in je lane.
+- Werk status bij: owner, volgende stap, deadline.
+- Markeer blocker direct met impact en ETA.
+- Als blocker >4 uur of besluit nodig: escaleren naar Zeus.
+- Als niets kritisch: HEARTBEAT_OK.
