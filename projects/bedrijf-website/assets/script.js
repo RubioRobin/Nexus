@@ -143,26 +143,29 @@ if(form){
     localStorage.setItem('nexus_intakes',JSON.stringify(submissions.slice(-100)));
 
     let apiOk=false;
+    let apiError='';
     try{
       const res=await fetch(`${INTAKE_API_BASE}/api/intake`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(task)
       });
+      const out=await res.json().catch(()=>({}));
       if(res.ok){
-        const out=await res.json();
         apiOk=true;
         feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} staat in centrale queue (${out.assignedTo}). Issue: #${out.issueNumber}`;
+      } else {
+        apiError = out?.error || `HTTP ${res.status}`;
       }
-    }catch(_err){
-      // fallback below
+    }catch(err){
+      apiError = err?.message || 'onbekende netwerkfout';
     }
 
     if(!apiOk){
       const queue=JSON.parse(localStorage.getItem('nexus_build_queue')||'[]');
       queue.push(task);
       localStorage.setItem('nexus_build_queue',JSON.stringify(queue.slice(-100)));
-      feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} lokaal in wachtrij gezet (backend niet bereikbaar).`;
+      feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} lokaal in wachtrij gezet (centrale API fout: ${apiError || 'onbekend'}).`;
     }
 
     feedback.className='form-feedback ok';
