@@ -57,6 +57,7 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 1. **Facts**
 - Robin bevestigde dat de add-in zichtbaar is en gaf aanvullende standaarden voor toekomstige builds.
 - Robin wil meerdere XAML-voorbeelden aanleveren als referentie-‘database’ voor gewenste UI.
+- Eerste set met 6 C#/WPF snippets ontvangen (ProgressWindow, ResultWindow, SelectionWindow, IfcSettingsWindow, NotificationWindow, AdminCommand).
 
 2. **Decisions**
 - Revit add-in UI moet aansluiten op de website-UI.
@@ -68,6 +69,7 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 4. **Artifacts**
 - Webchat bericht Robin, 2026-02-25 13:22 (Europe/Amsterdam).
+- `ops/XAML_UI_REFERENCE_VH_IFC_QR_2026-02-25.md`
 
 5. **Open actions**
 - Owner Zeus/codeur: inkomende XAML-snippets structureren in een herbruikbare referentie-database voor Revit UI-implementaties.
