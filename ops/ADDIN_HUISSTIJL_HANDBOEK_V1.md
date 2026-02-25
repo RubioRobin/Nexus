@@ -11,9 +11,10 @@ Doel: elke nieuwe add-in visueel en UX-technisch laten aansluiten op de website-
 ## 1) Niet-onderhandelbare standaarden
 
 1. UI volgt website-stijl (kleurgevoel, componentvorm, spacing, toon).
-2. Elke add-in heeft een eigen Ribbon-knop.
-3. Voorkeur: Ribbon-knop met 32x32 icoon (tijdelijk zonder icoon mag alleen als tussenstap).
-4. Geen release zonder `.dll` + `.addin` + build zonder errors/warnings.
+2. UI-technologie standaard: **WPF/XAML** (geen WinForms voor nieuwe UI of refactors).
+3. Elke add-in heeft een eigen Ribbon-knop.
+4. Voorkeur: Ribbon-knop met 32x32 icoon (tijdelijk zonder icoon mag alleen als tussenstap).
+5. Geen release zonder `.dll` + `.addin` + build zonder errors/warnings.
 
 ---
 

@@ -113,3 +113,20 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: library in eerstvolgende add-in concreet toepassen en visueel valideren met Robin.
+
+## 2026-02-25 14:19 Technologiekeuze UI
+1. **Facts**
+- Robin gaf expliciet aan: add-ins moeten altijd als XAML worden gebouwd.
+
+2. **Decisions**
+- Standaard UI stack voor add-ins is WPF/XAML.
+- WinForms wordt niet meer gebruikt voor nieuwe UI-implementaties.
+
+3. **Ideas**
+- Bestaande WinForms-schermen gefaseerd migreren naar XAML met gedeelde style library.
+
+4. **Artifacts**
+- Update `ops/ADDIN_HUISSTIJL_HANDBOEK_V1.md` (XAML-only regel).
+
+5. **Open actions**
+- Owner Zeus/codeur: Batch Sheet Renamer van WinForms naar WPF/XAML migreren.
