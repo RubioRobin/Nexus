@@ -425,6 +425,7 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 - `ops/TELEGRAM_HYGIENE_RUNBOOK_V1.md`
 - Update `ops/OPERATING_PLAYBOOK_V1.md`
 - Update `ops/TELEGRAM_CHANNEL_MAP.md`
+- Blockers-Critical ID geüpdatet naar `-1003361582961`
 
 5. **Open actions**
 - Owner Zeus: cronjob-instellingen nog verifiëren zodra system approval voor `crontab -l` door is.

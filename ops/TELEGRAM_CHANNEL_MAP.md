@@ -14,7 +14,7 @@ Purpose: vaste kanaal-ID mapping voor betrouwbare automation en berichtenrouting
 - Planning: `-1003575020150`
 - Codeurs: `-1003826367901`
 - QA-Release: `-1003543098532`
-- Blockers-Critical: `-1003399860071`
+- Blockers-Critical: `-1003361582961`
 
 ## Routing rules
 1. Research levert kansen/problemen naar Directie (08:00 shortlist).
