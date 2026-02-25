@@ -343,6 +343,26 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Robin/Zeus: shortlist van echte visuals/foto’s aanleveren voor homepage/case modules.
 
+## 2026-02-25 Pipeline verduidelijking Robin (dual track)
+1. **Facts**
+- Robin bevestigde 2 parallelle lijnen: eigen add-in ontwikkeling + client intake.
+- Robin wil Telegram als primair statuskanaal (08:00, 12:30, 19:30 + tussentijdse major updates).
+- Robin wil minimale GitHub-afhankelijkheid (alleen website + add-ins).
+
+2. **Decisions**
+- Dual-track architectuur vastgelegd in `ops/REVIT_ADDIN_PIPELINES_V1.md`.
+- GO door Robin op addin-selectie; overige fasen zoveel mogelijk automatisch.
+- Revit 2025 is actieve test/release baseline; 2023/2024/2026 op roadmap.
+
+3. **Ideas**
+- Telegram command parser voor GO/NO-GO zodat build direct uit chat kan starten.
+
+4. **Artifacts**
+- `ops/REVIT_ADDIN_PIPELINES_V1.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: fase-implementatie starten (Athena research job + Telegram GO parser + centrale state store).
+
 ## 2026-02-25 Duidelijke add-in mappenstructuur (Robin)
 1. **Facts**
 - Robin vroeg om een duidelijke structuur voor inkomende aanvragen vanuit website/intake.
