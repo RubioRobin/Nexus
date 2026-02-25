@@ -8,7 +8,7 @@ export default async function handler(_req, res) {
       return res.status(500).json({ ok: false, error: 'Missing GITHUB_TOKEN env var' });
     }
 
-    const q = encodeURIComponent('is:issue is:open label:auto-build label:intake');
+    const q = encodeURIComponent('is:issue is:open label:intake');
     const url = `https://api.github.com/search/issues?q=${q}+repo:${owner}/${repo}&sort=created&order=desc&per_page=20`;
 
     const resp = await fetch(url, {

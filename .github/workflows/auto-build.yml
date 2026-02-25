@@ -2,7 +2,7 @@ name: auto-build-intake
 
 on:
   issues:
-    types: [opened, labeled]
+    types: [labeled]
   workflow_dispatch:
     inputs:
       issue_number:
@@ -17,7 +17,7 @@ on:
 
 jobs:
   auto-build:
-    if: github.event_name == 'workflow_dispatch' || contains(join(github.event.issue.labels.*.name, ','), 'auto-build')
+    if: github.event_name == 'workflow_dispatch' || github.event.label.name == 'go-build'
     runs-on: ubuntu-latest
     permissions:
       issues: write

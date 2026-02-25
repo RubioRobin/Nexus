@@ -18,7 +18,7 @@ export default async function handler(req, res) {
     }
 
     const addinType = task?.intake?.addinType || 'Algemeen';
-    const labels = ['intake', 'auto-build', 'revit-addon'];
+    const labels = ['intake', 'awaiting-go', 'revit-addon'];
 
     const body = [
       `# Build Task ${task.taskId}`,
@@ -74,31 +74,31 @@ export default async function handler(req, res) {
 
     const issue = await issueResp.json();
 
-    // Optional: trigger workflow dispatch for automation pipeline
-    const workflow = process.env.AUTO_BUILD_WORKFLOW_FILE || 'auto-build.yml';
-    if (workflow) {
-      await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/dispatches`, {
+    // Notify Robin on Telegram before any build starts
+    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
+    const tgChatId = process.env.TELEGRAM_CHAT_ID;
+    if (tgToken && tgChatId) {
+      const text = [
+        `Nieuwe intake: ${task.taskId}`,
+        `Type: ${addinType}`,
+        `Urgentie: ${task.intake?.urgency || '-'}`,
+        `Issue: ${issue.html_url}`,
+        '',
+        `Reageer met GO/NO-GO.`,
+        `Bij GO: voeg label 'go-build' toe op issue #${issue.number}.`
+      ].join('\n');
+
+      await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
         method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          Accept: 'application/vnd.github+json',
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ref: process.env.AUTO_BUILD_REF || 'master',
-          inputs: {
-            issue_number: String(issue.number),
-            task_id: task.taskId,
-            trace_id: task.traceId
-          }
-        })
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: tgChatId, text })
       });
     }
 
     return res.status(200).json({
       ok: true,
-      queueStatus: 'queued',
-      assignedTo: 'github-issues-auto-build',
+      queueStatus: 'awaiting_go',
+      assignedTo: 'robin-go-gate',
       taskId: task.taskId,
       issueUrl: issue.html_url,
       issueNumber: issue.number
