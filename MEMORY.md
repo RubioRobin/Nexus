@@ -130,3 +130,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: Batch Sheet Renamer van WinForms naar WPF/XAML migreren.
+
+## 2026-02-25 14:57 Batch Sheet Renamer XAML migratie
+1. **Facts**
+- Robin gaf opdracht om de add-in volledig om te bouwen naar WPF/XAML met huisstijl.
+- UI is gemigreerd van WinForms naar WPF/XAML met house-style tokens/controls.
+
+2. **Decisions**
+- Batch Sheet Renamer gebruikt voortaan WPF (`UseWPF=true`) en geen WinForms.
+- Project bevat lokale style dictionaries onder `Styles/` voor directe toepasbaarheid.
+
+3. **Ideas**
+- Volgende stap: style dictionaries centraliseren als linked shared resources voor alle add-ins.
+
+4. **Artifacts**
+- `projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/BatchSheetRenamerForm.xaml`
+- `projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/BatchSheetRenamerForm.cs`
+- `projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/Styles/BrandTokens.xaml`
+- `projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/Styles/Controls.xaml`
+
+5. **Open actions**
+- Owner Robin/Zeus: Windows build + Revit runtime test bevestigen op testmachine.
