@@ -172,9 +172,9 @@ nav a.active {
 }
 
 .hero-full {
-  min-height: calc(100vh - var(--header-height));
+  min-height: 72vh;
   padding-top: calc(var(--header-height) + 28px);
-  padding-bottom: 64px;
+  padding-bottom: 36px;
   display: flex;
   align-items: flex-start;
 }
@@ -247,6 +247,33 @@ nav a.active {
 .actions {
   display: flex;
   gap: 16px;
+}
+
+.flow-banner {
+  margin-top: 22px;
+  border: 1px solid rgba(27, 67, 50, 0.1);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.flow-track {
+  display: inline-flex;
+  gap: 12px;
+  white-space: nowrap;
+  padding: 12px 0;
+  color: var(--forest-700);
+  font-weight: 700;
+  animation: flow-marquee 22s linear infinite;
+}
+
+.flow-track span {
+  padding: 0 2px;
+}
+
+@keyframes flow-marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
 }
 
 /* Buttons */
@@ -383,6 +410,10 @@ nav a.active {
 /* General Sections */
 section {
   padding: 100px 0;
+}
+
+.hero + section {
+  padding-top: 56px;
 }
 
 .section-title {
@@ -1034,6 +1065,10 @@ textarea {
   .reveal {
     opacity: 1;
     transform: none;
+  }
+
+  .flow-track {
+    animation: none;
   }
 }
 
