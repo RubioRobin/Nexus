@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>NEXUS — End-to-End Revit Automatisering</title>
+    <title>NEXUS — Revit automatisering die werkt</title>
+    <meta name="description" content="Van handmatig Revit-werk naar slimme add-ins. Duidelijk proces, snelle intake en resultaat dat je team echt voelt.">
     <link rel="stylesheet" href="assets/styles.css">
 </head>
 
@@ -12,7 +13,8 @@
     <header class="site-header">
         <div class="container nav-wrap">
             <a class="brand" href="index.html">NEXUS</a>
-            <nav>
+            <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">☰</button>
+            <nav id="mainNav">
                 <a class="active" href="index.html">Home</a>
                 <a href="diensten.html">Oplossingen</a>
                 <a href="cases.html">Cases</a>
@@ -23,147 +25,140 @@
     </header>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero">
             <div class="container hero-grid">
                 <div>
-                    <span class="badge">Revit · BIM · Add-in Factory</span>
-                    <h1 class="reveal">Minder repetitief werk. <br><span style="color:var(--accent)">Meer
-                            controle.</span></h1>
+                    <span class="badge">Revit Add-ins • BIM Automatisering</span>
+                    <h1 class="reveal">Minder klikken.<br><span style="color:var(--accent)">Meer flow in je team.</span></h1>
                     <p class="reveal">
-                        Wij bouwen intelligente Revit add-ins via onze <strong>Add-in Factory Pipeline</strong>. Van
-                        geautomatiseerde intake naar een kwalitatieve release binnen 5-10 werkdagen.
+                        We bouwen Revit add-ins die repetitief werk wegnemen, fouten verminderen en je team sneller laten leveren.
+                        Geen ingewikkeld traject: helder intakeproces, duidelijke stappen, en tastbaar resultaat.
                     </p>
                     <div class="actions reveal">
-                        <a class="btn primary track-cta" data-cta="hero-start-intake" href="contact.html">Maak Intake
-                            Record</a>
-                        <a class="btn ghost" href="over-ons.html">Bekijk Werkwijze</a>
+                        <a class="btn primary track-cta" data-cta="hero-start-intake" href="contact.html">Start een intake</a>
+                        <a class="btn ghost" href="cases.html">Bekijk cases</a>
                     </div>
+                    <p class="micro-proof reveal">Gemiddeld binnen 24 uur reactie op intake • Ontwikkeld voor Revit-teams</p>
                 </div>
 
                 <aside class="hero-visual reveal">
                     <div class="visual-card">
-                        <h3>Factory Status</h3>
+                        <h3>Wat je mag verwachten</h3>
                         <ul>
-                            <li><strong>1</strong> <span>Intake Record gegenereerd</span></li>
-                            <li><strong>2</strong> <span>Triage & Kwalificatie</span></li>
-                            <li><strong>3</strong> <span>Build & QA Pipeline</span></li>
+                            <li><strong>01</strong> <span>Jij legt je workflow uit in begrijpelijke taal</span></li>
+                            <li><strong>02</strong> <span>Wij vertalen dit naar een heldere bouwopdracht</span></li>
+                            <li><strong>03</strong> <span>Je krijgt een add-in die direct inzetbaar is</span></li>
                         </ul>
                     </div>
                     <div class="visual-kpi">
-                        <div><span>70%</span><small>Automation</small></div>
-                        <div><span>24h</span><small>Triage</small></div>
-                        <div><span>100%</span><small>QA Pass</small></div>
+                        <div><span>24u</span><small>Eerste reactie</small></div>
+                        <div><span>5-10d</span><small>Typische oplevering</small></div>
+                        <div><span>WPF</span><small>UI standaard</small></div>
                     </div>
                 </aside>
             </div>
         </section>
 
-        <!-- Pipeline Process Section -->
-        <section style="background: var(--white); border-top: 1px solid rgba(27,67,50,0.05);">
+        <section class="trust-strip-wrap">
             <div class="container">
-                <div style="text-align: center; margin-bottom: 80px;">
-                    <h2 class="section-title reveal">De Add-in Factory Pipeline</h2>
+                <div class="trust-strip reveal">
+                    <span>Voor teams die snelheid én controle willen</span>
+                    <span>•</span>
+                    <span>Duidelijke afspraken vooraf</span>
+                    <span>•</span>
+                    <span>Transparante voortgang</span>
+                    <span>•</span>
+                    <span>Focus op echte workflow-winst</span>
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 64px;">
+                    <h2 class="section-title reveal">Waarom klanten voor NEXUS kiezen</h2>
                     <p class="section-sub reveal" style="margin-left: auto; margin-right: auto;">
-                        Onze end-to-end geautomatiseerde pipeline garandeert snelheid, kwaliteit en voorspelbaarheid
-                        voor al je Revit tools.
+                        Niet omdat het technisch slim klinkt, maar omdat het in de praktijk werkt.
                     </p>
                 </div>
 
                 <div class="grid">
                     <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">01</span> Intake
-                        </h3>
-                        <p>Structured IntakeRecord.json capture van je workflow, probleem en succescriteria.</p>
+                        <h3>Direct merkbare tijdwinst</h3>
+                        <p>We richten op repetitieve taken met hoge impact, zodat je team snel uren terugwint.</p>
                     </article>
                     <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">02</span> Triage
-                        </h3>
-                        <p>Geautomatiseerde kwalificatie op scope, risico en haalbaarheid door onze Agents.</p>
+                        <h3>Rust in je proces</h3>
+                        <p>Van intake tot oplevering weet je exact waar je staat, zonder losse eindjes.</p>
                     </article>
                     <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">03</span> Routing
-                        </h3>
-                        <p>Score-gebaseerde prioriteitstelling en route-keuze (Go/No-Go/More Info).</p>
-                    </article>
-                    <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">04</span> Spec
-                        </h3>
-                        <p>Genereren van PRD en Tech Spec inclusief Revit API architectuur en testplan.</p>
-                    </article>
-                    <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">05</span> Build
-                        </h3>
-                        <p>Dev Agents scaffolden, implementeren en unit-testen je add-in vanuit templates.</p>
-                    </article>
-                    <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">06</span> QA
-                        </h3>
-                        <p>Strenge check op huisstijlboek, Revit performance en security compliance.</p>
-                    </article>
-                    <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">07</span> Release
-                        </h3>
-                        <p>Gepersonaliseerde distributie met installatie-instructies en rollback options.</p>
-                    </article>
-                    <article class="card reveal">
-                        <h3 style="display:flex; align-items:center; gap:12px;">
-                            <span style="color:var(--accent); font-size:1.5rem;">08</span> Iteration
-                        </h3>
-                        <p>Feedback loop die direct backlog items genereert voor continue verbetering.</p>
+                        <h3>Gebouwd voor adoptie</h3>
+                        <p>Heldere UI, vaste huisstijl en logische workflows zorgen dat mensen de tool ook echt gebruiken.</p>
                     </article>
                 </div>
             </div>
         </section>
 
-        <!-- KPI Section -->
+        <section style="background: var(--white); border-top: 1px solid rgba(27,67,50,0.05); border-bottom: 1px solid rgba(27,67,50,0.05);">
+            <div class="container">
+                <div style="text-align: center; margin-bottom: 64px;">
+                    <h2 class="section-title reveal">Zo sturen we naar intake (zonder push)</h2>
+                    <p class="section-sub reveal" style="margin-left: auto; margin-right: auto;">
+                        Eerst vertrouwen, dan pas actie. Je krijgt context, voorbeelden en pas daarna een logische volgende stap.
+                    </p>
+                </div>
+
+                <div class="grid steps-grid">
+                    <article class="card reveal">
+                        <h3><span class="step-no">1</span> Verhelderen</h3>
+                        <p>We laten snel zien welk type probleem we oplossen en waar de winst zit voor jouw team.</p>
+                    </article>
+                    <article class="card reveal">
+                        <h3><span class="step-no">2</span> Bewijzen</h3>
+                        <p>Met cases en concrete voorbeelden zie je of onze aanpak bij jouw situatie past.</p>
+                    </article>
+                    <article class="card reveal">
+                        <h3><span class="step-no">3</span> Doorpakken</h3>
+                        <p>Alleen als het goed voelt klik je door naar intake. Kort, duidelijk en zonder gedoe.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
         <section>
             <div class="container">
-                <div class="grid" style="grid-template-columns: repeat(3, 1fr); text-align: center;">
+                <div class="kpi-row">
                     <div class="reveal">
-                        <h2 style="font-size: 3.5rem; color: var(--accent); margin-bottom: 10px;">50+</h2>
-                        <p
-                            style="font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--forest-600);">
-                            Custom Add-ins</p>
+                        <h2>50+</h2>
+                        <p>Automatiseringskansen beoordeeld</p>
                     </div>
                     <div class="reveal">
-                        <h2 style="font-size: 3.5rem; color: var(--accent); margin-bottom: 10px;">7d</h2>
-                        <p
-                            style="font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--forest-600);">
-                            Gem. Doorlooptijd</p>
+                        <h2>24u</h2>
+                        <p>Gemiddelde eerste reactie</p>
                     </div>
                     <div class="reveal">
-                        <h2 style="font-size: 3.5rem; color: var(--accent); margin-bottom: 10px;">98%</h2>
-                        <p
-                            style="font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: var(--forest-600);">
-                            Client Trust</p>
+                        <h2>5-10d</h2>
+                        <p>Typische doorlooptijd</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Call to Action -->
         <section class="container" style="padding: 0 32px 100px;">
             <div class="cta reveal">
-                <h2>Start je Automatisering</h2>
-                <p>In 5 minuten van probleem naar een gestructureerde build-aanvraag. Laat onze factory het werk voor je
-                    doen.</p>
-                <a class="btn gold track-cta" data-cta="bottom-start-intake" href="contact.html">Start Factory
-                    Intake</a>
+                <h2>Klaar om je Revit-werk slimmer te maken?</h2>
+                <p>Geen verkooppraatje. Gewoon een intake waarmee we snel kunnen bepalen wat haalbaar is en wat het oplevert.</p>
+                <div class="actions" style="justify-content:center;">
+                    <a class="btn gold track-cta" data-cta="bottom-start-intake" href="contact.html">Start intake</a>
+                    <a class="btn ghost" href="over-ons.html">Lees eerst onze werkwijze</a>
+                </div>
             </div>
         </section>
     </main>
 
     <footer class="footer">
         <div class="container">
-            &copy; 2026 NEXUS — Professionele Revit Automatisering met Resultaat.
+            &copy; 2026 NEXUS — Revit automatisering met focus op resultaat.
         </div>
     </footer>
 

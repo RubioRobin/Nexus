@@ -1,5 +1,18 @@
 /** NEXUS site scripts: reveal, tracking, intake + feedback */
 
+const menuToggle = document.querySelector('.menu-toggle');
+const mainNav = document.getElementById('mainNav');
+if (menuToggle && mainNav) {
+  menuToggle.addEventListener('click', () => {
+    const open = mainNav.classList.toggle('open');
+    menuToggle.setAttribute('aria-expanded', String(open));
+  });
+  mainNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    mainNav.classList.remove('open');
+    menuToggle.setAttribute('aria-expanded', 'false');
+  }));
+}
+
 document.querySelectorAll('.reveal').forEach((el, i) => {
   el.style.setProperty('--i', i);
   const io = new IntersectionObserver((entries) => {
