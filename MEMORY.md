@@ -275,3 +275,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: codegen intelligentie verbeteren zodat output functioneel dichter op intake zit.
+
+## 2026-02-25 GO-gate voor autobuild
+1. **Facts**
+- Robin wil vóór build altijd eerst Telegram GO/NO-GO.
+- Robin wil automatische GitHub e-mail zoveel mogelijk uit.
+
+2. **Decisions**
+- Intake maakt issue met label `awaiting-go` (geen directe buildstart).
+- Auto-build workflow start alleen bij label `go-build` of handmatige dispatch.
+- Intake API stuurt Telegram melding (als env vars aanwezig) met instructie voor GO.
+
+3. **Ideas**
+- Later: GO/NO-GO direct via Telegram callback i.p.v. handmatig labelen in GitHub.
+
+4. **Artifacts**
+- `projects/bedrijf-website/api/intake.js`
+- `.github/workflows/auto-build.yml`
+- `projects/bedrijf-website/assets/script.js`
+
+5. **Open actions**
+- Owner Robin: in Vercel `TELEGRAM_BOT_TOKEN` en `TELEGRAM_CHAT_ID` zetten voor pre-build notificaties.
