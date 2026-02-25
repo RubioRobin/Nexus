@@ -248,21 +248,24 @@ nav a.active {
 }
 
 .flow-banner {
-  margin-top: 22px;
-  border: 1px solid rgba(27, 67, 50, 0.1);
-  background: rgba(255, 255, 255, 0.7);
-  border-radius: 12px;
+  margin-top: 26px;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  width: 100vw;
+  border-top: 1px solid rgba(27, 67, 50, 0.12);
+  border-bottom: 1px solid rgba(27, 67, 50, 0.12);
+  background: rgba(255, 255, 255, 0.72);
   overflow: hidden;
 }
 
 .flow-track {
   display: inline-flex;
-  gap: 12px;
+  gap: 14px;
   white-space: nowrap;
-  padding: 12px 0;
+  padding: 13px 0;
   color: var(--forest-700);
   font-weight: 700;
-  animation: flow-marquee 22s linear infinite;
+  animation: flow-marquee 28s linear infinite;
 }
 
 .flow-track span {
@@ -410,8 +413,20 @@ section {
   padding: 100px 0;
 }
 
-.hero + section {
-  padding-top: 56px;
+.home-intro-section {
+  padding-top: 72px;
+  position: relative;
+}
+
+.home-intro-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: linear-gradient(180deg, rgba(243, 246, 244, 0.96), rgba(243, 246, 244, 0));
+  pointer-events: none;
 }
 
 .section-title {
