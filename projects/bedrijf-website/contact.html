@@ -1,16 +1,20 @@
 <!doctype html>
 <html lang="nl">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Start Intake — NEXUS Add-in Factory</title>
+  <title>Start intake — NEXUS</title>
+  <meta name="description" content="Start je intake in een paar minuten. We maken snel duidelijk wat haalbaar is en welke winst je kunt verwachten.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
+
 <body>
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">NEXUS</a>
-      <nav>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">☰</button>
+      <nav id="mainNav">
         <a href="index.html">Home</a>
         <a href="diensten.html">Oplossingen</a>
         <a href="cases.html">Cases</a>
@@ -21,120 +25,135 @@
   </header>
 
   <main>
-    <section>
+    <section class="hero case-hero">
       <div class="container">
-        <div style="text-align: center; margin-bottom: 60px;">
-          <span class="badge">Pipeline Phase 1: Intake</span>
-          <h1 class="section-title reveal">Start je Add-in Intake</h1>
-          <p class="section-sub reveal" style="margin-left: auto; margin-right: auto;">
-            Vul onderstaand formulier volledig in. Onze <strong>Qualification Agent</strong> analyseert je aanvraag direct op scope, risico en haalbaarheid.
-          </p>
+        <span class="badge">Intake in 3 korte stappen</span>
+        <h1 class="section-title reveal">Vertel je bottleneck. Wij regelen de route.</h1>
+        <p class="section-sub reveal">Je hoeft geen technisch verhaal te schrijven. Beschrijf wat nu stroef loopt — wij vertalen het naar een concrete bouwopdracht.</p>
+        <div class="intake-steps reveal">
+          <span>1. Context</span>
+          <span>2. Probleem</span>
+          <span>3. Doel & planning</span>
         </div>
+      </div>
+    </section>
 
-        <div class="card reveal" style="max-width: 900px; margin: 0 auto; padding: 48px;">
+    <section style="padding-top:20px;">
+      <div class="container">
+        <div class="card reveal intake-card">
           <form id="intakeForm" class="intake-form" novalidate>
-            <!-- 1. Organisatie & Contact -->
-            <h3 style="margin-bottom: 24px; border-bottom: 1px solid rgba(27,67,50,0.1); padding-bottom: 12px;">1. Organisatie & Contact</h3>
-            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
-              <label>Bedrijf / Organisatie
-                <input type="text" name="company" required placeholder="Naam van je organisatie">
-              </label>
-              <label>Type Organisatie
-                <select name="companyType" required>
-                  <option value="">Maak een keuze</option>
-                  <option>Architectenbureau</option>
-                  <option>Aannemer / Bouwer</option>
-                  <option>Ingenieursbureau</option>
-                  <option>Installateur (MEP)</option>
-                  <option>Software / IT</option>
-                  <option>Anders</option>
-                </select>
-              </label>
-            </div>
-            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 32px;">
-              <label>Contactpersoon
-                <input type="text" name="contactName" required placeholder="Voor- en achternaam">
-              </label>
-              <label>Je Rol
-                <input type="text" name="contactRole" required placeholder="Bijv. BIM Manager, Architect">
-              </label>
-            </div>
-            <label style="margin-bottom: 32px;">E-mailadres (Zakelijk)
-              <input type="email" name="email" required placeholder="naam@bedrijf.nl">
-            </label>
 
-            <!-- 2. Technische Scope -->
-            <h3 style="margin-bottom: 24px; border-bottom: 1px solid rgba(27,67,50,0.1); padding-bottom: 12px; margin-top: 48px;">2. Technische Context</h3>
-            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 24px;">
-              <label>Revit Versies (meerdere mogelijk)
-                <input type="text" name="revitVersions" required placeholder="Bijv. 2023, 2024, 2025">
-              </label>
-              <label>Discipline(s)
-                <select name="disciplines" required multiple style="height: 100px;">
-                  <option>Architectuur</option>
-                  <option>Constructie</option>
-                  <option>MEP (Elektra)</option>
-                  <option>MEP (W-installaties)</option>
-                  <option>BIM Coördinatie</option>
-                </select>
-              </label>
-            </div>
+            <div class="form-section">
+              <h3>1) Context</h3>
+              <p class="form-help">Wie ben je en in welke omgeving draait dit?</p>
 
-            <!-- 3. Probleem & Workflow -->
-            <h3 style="margin-bottom: 24px; border-bottom: 1px solid rgba(27,67,50,0.1); padding-bottom: 12px; margin-top: 48px;">3. Probleemomschrijving & Impact</h3>
-            <label style="margin-bottom: 24px;">Wat is het specifieke probleem? (min. 50 tekens)
-              <textarea name="problemDescription" required minlength="50" placeholder="Beschrijf je huidige struikelblok zo gedetailleerd mogelijk..."></textarea>
-            </label>
-            <label style="margin-bottom: 24px;">Huidige Workflow & Pijnpunten
-              <textarea name="currentWorkflow" required placeholder="Stap 1: ... Stap 2: ... Waar gaat het nu mis of traag?"></textarea>
-            </label>
-            
-            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 32px;">
-              <label>Frequentie (hoe vaak nodig?)
-                <select name="frequency" required>
-                  <option value="">Maak een keuze</option>
-                  <option>Dagelijks (meerdere keren)</option>
-                  <option>Wekelijks</option>
-                  <option>Per project-fase</option>
-                  <option>Eenmalig groot project</option>
-                </select>
+              <div class="form-grid-2">
+                <label>Bedrijf / organisatie
+                  <input type="text" name="company" required placeholder="Bijv. Studio Bouwkracht">
+                </label>
+                <label>Type organisatie
+                  <select name="companyType" required>
+                    <option value="">Maak een keuze</option>
+                    <option>Architectenbureau</option>
+                    <option>Aannemer / Bouwer</option>
+                    <option>Ingenieursbureau</option>
+                    <option>Installateur (MEP)</option>
+                    <option>Software / IT</option>
+                    <option>Anders</option>
+                  </select>
+                </label>
+              </div>
+
+              <div class="form-grid-2">
+                <label>Contactpersoon
+                  <input type="text" name="contactName" required placeholder="Voor- en achternaam">
+                </label>
+                <label>Je rol
+                  <input type="text" name="contactRole" required placeholder="Bijv. BIM Manager">
+                </label>
+              </div>
+
+              <label>E-mailadres (zakelijk)
+                <input type="email" name="email" required placeholder="naam@bedrijf.nl">
               </label>
-              <label>Impact (tijdverlies per week)
-                <input type="text" name="impactHours" required placeholder="Bijv. 4-8 uur per week">
-              </label>
+
+              <div class="form-grid-2">
+                <label>Revit versies
+                  <input type="text" name="revitVersions" required placeholder="Bijv. 2024, 2025">
+                </label>
+                <label>Discipline(s)
+                  <select name="disciplines" required multiple style="height: 110px;">
+                    <option>Architectuur</option>
+                    <option>Constructie</option>
+                    <option>MEP (Elektra)</option>
+                    <option>MEP (W-installaties)</option>
+                    <option>BIM Coördinatie</option>
+                  </select>
+                </label>
+              </div>
             </div>
 
-            <!-- 4. Randvoorwaarden & Succes -->
-            <h3 style="margin-bottom: 24px; border-bottom: 1px solid rgba(27,67,50,0.1); padding-bottom: 12px; margin-top: 48px;">4. Randvoorwaarden & Succes</h3>
-            <label style="margin-bottom: 24px;">Succescriteria (Wanneer is dit geslaagd?)
-              <input type="text" name="successCriteria" required placeholder="Bijv. Sheets hernoemen kost < 1 minuut zonder fouten">
-            </label>
-            <label style="margin-bottom: 24px;">IT Randvoorwaarden / Constraints
-              <textarea name="constraints" placeholder="Bijv. Geen cloud-verbinding toegestaan, moet offline werken, specifieke IT policies..."></textarea>
-            </label>
+            <div class="form-section">
+              <h3>2) Probleem & huidige workflow</h3>
+              <p class="form-help">Hoe concreter je dit beschrijft, hoe sneller wij kunnen bouwen.</p>
 
-            <div class="grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 32px;">
-              <label>Budgetindicatie
-                <select name="budget">
-                  <option value="geen">Nog niet bepaald</option>
-                  <option>Licht (onder €2.500)</option>
-                  <option>Midden (€2.500 - €7.500)</option>
-                  <option>Groot (€7.500+)</option>
-                </select>
+              <label>Wat loopt er nu vast? (min. 50 tekens)
+                <textarea name="problemDescription" required minlength="50" placeholder="Beschrijf het probleem in gewone taal: waar verlies je tijd, waar ontstaan fouten?"></textarea>
               </label>
-              <label>Gewenste opleverdatum
-                <input type="date" name="targetDate">
+
+              <label>Hoe gaat het nu stap voor stap?
+                <textarea name="currentWorkflow" required placeholder="Bijv. Exporteren → handmatig hernoemen → controle → corrigeren..."></textarea>
+              </label>
+
+              <div class="form-grid-2">
+                <label>Hoe vaak komt dit voor?
+                  <select name="frequency" required>
+                    <option value="">Maak een keuze</option>
+                    <option>Dagelijks (meerdere keren)</option>
+                    <option>Wekelijks</option>
+                    <option>Per project-fase</option>
+                    <option>Eenmalig groot project</option>
+                  </select>
+                </label>
+                <label>Tijdverlies per week
+                  <input type="text" name="impactHours" required placeholder="Bijv. 4–8 uur per week">
+                </label>
+              </div>
+            </div>
+
+            <div class="form-section">
+              <h3>3) Gewenst resultaat</h3>
+              <p class="form-help">Wanneer is dit project voor jou geslaagd?</p>
+
+              <label>Succescriteria
+                <input type="text" name="successCriteria" required placeholder="Bijv. Klaar in 1 minuut, zonder handmatige correcties">
+              </label>
+
+              <label>Randvoorwaarden (optioneel)
+                <textarea name="constraints" placeholder="Bijv. offline vereist, IT policy, interne standaarden..."></textarea>
+              </label>
+
+              <div class="form-grid-2">
+                <label>Budgetindicatie (optioneel)
+                  <select name="budget">
+                    <option value="geen">Nog niet bepaald</option>
+                    <option>Licht (onder €2.500)</option>
+                    <option>Midden (€2.500 - €7.500)</option>
+                    <option>Groot (€7.500+)</option>
+                  </select>
+                </label>
+                <label>Gewenste opleverdatum (optioneel)
+                  <input type="date" name="targetDate">
+                </label>
+              </div>
+
+              <label>Link naar voorbeeldbestanden (optioneel)
+                <input type="url" name="filesUrl" placeholder="https://... (OneDrive, WeTransfer, etc.)">
               </label>
             </div>
 
-            <label style="margin-bottom: 40px;">Link naar voorbeeldbestanden (Screenshots, RVT, Logs)
-              <input type="url" name="filesUrl" placeholder="https://... (WeTransfer, OneDrive, etc.)">
-            </label>
-
-            <div style="background: rgba(45,106,79,0.05); padding: 24px; border-radius: var(--radius-sm); margin-bottom: 40px; border: 1px solid rgba(45,106,79,0.1);">
-              <p style="font-size: 0.9rem; color: var(--text-muted); margin: 0;">
-                <strong>Privacy & NDA:</strong> Je data wordt vertrouwelijk behandeld en alleen gebruikt voor het configureren van de Add-in Factory. Voor gevoelige data raden we aan om dummy-bestanden te uploaden.
-              </p>
+            <div class="privacy-box">
+              <p><strong>Privacy & NDA:</strong> We behandelen je data vertrouwelijk en gebruiken deze alleen om de intake correct te verwerken.</p>
             </div>
 
             <input type="text" name="website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;opacity:0;pointer-events:none;">
@@ -142,9 +161,10 @@
 
             <div class="actions">
               <button class="btn primary" type="submit" style="width: 100%; padding: 18px;">
-                Start Geautomatiseerde Triage
+                Verstuur intake
               </button>
             </div>
+            <p class="submit-note">Na verzenden krijg je een bevestiging en pakken we je aanvraag direct op.</p>
           </form>
         </div>
       </div>
@@ -155,10 +175,11 @@
 
   <footer class="footer">
     <div class="container">
-      &copy; 2026 NEXUS — Built with the Add-in Factory Pipeline
+      &copy; 2026 NEXUS — Revit automatisering met resultaat.
     </div>
   </footer>
 
   <script src="assets/script.js"></script>
 </body>
+
 </html>
