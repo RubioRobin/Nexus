@@ -76,7 +76,9 @@ Owner: Robin (final decisions) / Zeus (execution)
 - Release artifact-eis (Revit add-ins): lever altijd zowel `.dll` als `.addin` bestand aan Robin.
 - Build kwaliteitseis: build zonder errors of warnings vóór QA handoff.
 - QA policy: strict by default, but with controlled MVP path to avoid paralysis
-- Research usefulness threshold: 2+ sources and preferably implementation proposal
+- Research usefulness threshold: 2+ sources and preferably implementation proposal.
+- Opportunity intake threshold: probleem moet minimaal 2x gesignaleerd zijn (meerdere signalen/voorbeelden) voordat het naar Directie-beslischeck gaat.
+- Impactmaatstaf voor prioritering: tijdswinst + reductie van repetitief werk in Revit weegt zwaarder dan novelty.
 - Evening delivery expectation: testable candidate for Robin (especially for Revit add-ins)
 
 ## 7) Telegram Role (Operational Source of Truth)
