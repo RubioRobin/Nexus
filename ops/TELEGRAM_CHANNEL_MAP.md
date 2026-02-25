@@ -21,3 +21,7 @@ Purpose: vaste kanaal-ID mapping voor betrouwbare automation en berichtenrouting
 2. Alleen na Robin JA: door naar Intake -> Planning -> Codeurs -> QA-Release.
 3. Escalaties >3h zonder update gaan naar Blockers-Critical.
 4. Release pas na QA PASS + Robin GO + artifacts (`.dll` + `.addin`).
+5. Besliscommando’s in groepschat: `GO <id>` of `NO-GO <id>` (geen impliciete reply-only beslissingen).
+
+## Hygiene
+- Zie `ops/TELEGRAM_HYGIENE_RUNBOOK_V1.md` voor cleanup, pinning, en update-format.

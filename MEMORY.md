@@ -409,6 +409,27 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus/codeur: auth/rate-limit + secure attachment strategy toevoegen (voor supabase fase).
 
+## 2026-02-25 Playbook/Telegram opschoning
+1. **Facts**
+- Robin vroeg om volledige check op handboek/playbook, cron/agents en Telegram-hygiëne.
+- OpenClaw status liet Telegram waarschuwing zien rond groepsverkeer (ruisgevoelig gedrag).
+
+2. **Decisions**
+- Telegram beslissingen verlopen expliciet via `GO <id>` / `NO-GO <id>`.
+- Telegram hygiene-runbook toegevoegd met lane-rules en wekelijkse cleanup-checklist.
+
+3. **Ideas**
+- Volgende stap: mention-gated groepsgedrag hardzetten in Telegram kanaalconfig zodat ruis verder daalt.
+
+4. **Artifacts**
+- `ops/TELEGRAM_HYGIENE_RUNBOOK_V1.md`
+- Update `ops/OPERATING_PLAYBOOK_V1.md`
+- Update `ops/TELEGRAM_CHANNEL_MAP.md`
+
+5. **Open actions**
+- Owner Zeus: cronjob-instellingen nog verifiëren zodra system approval voor `crontab -l` door is.
+- Owner Robin/Zeus: in Telegram oude testgroepen archiveren en pinned update-format per lane plaatsen.
+
 ## 2026-02-25 Duidelijke add-in mappenstructuur (Robin)
 1. **Facts**
 - Robin vroeg om een duidelijke structuur voor inkomende aanvragen vanuit website/intake.

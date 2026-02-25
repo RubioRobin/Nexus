@@ -163,6 +163,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 - 12:30 Status: voortgang, blockers, ETA, GO/NO-GO behoefte.
 - 19:30 Samenvatting: afgerond, openstaand, artifacts, plan morgen.
 - Elke 30m stale-check op 3h grens met escalatie naar Blockers-Critical.
+- Telegram commando’s voor beslissingen zijn expliciet: `GO <id>` / `NO-GO <id>`.
 
 ### Token-zuinig communicatieprotocol (verplicht)
 - Schrijf in simpel Nederlands (B1), korte zinnen, geen jargon tenzij nodig.
