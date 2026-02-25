@@ -22,6 +22,7 @@ Doel: elke nieuwe add-in visueel en UX-technisch laten aansluiten op de website-
 
 - **Vormtaal:** afgeronde hoeken, rustige vlakken, subtiele contrasten.
 - **Knoppen:** 1 duidelijke primary CTA per scherm, secundaire acties visueel lichter.
+- **Knopvorm:** afgerond vierkant (geen pill-vorm als default), in lijn met webstijl.
 - **Spacing:** ruime marges/padding; geen overvolle dialogen.
 - **Tekst:** kort, duidelijk, NL B1, actiegericht.
 - **Statusfeedback:** altijd met tekst + kleur/icoon (succes, waarschuwing, fout).
@@ -63,6 +64,7 @@ Maximaal 3 hoofdstappen in één flow.
 ### Notifications
 - Eén centrale notificatiecomponent gebruiken (`Info/Warning/Error`).
 - Niet per scherm nieuwe popup-stijl uitvinden.
+- Tone of voice klantvriendelijk: actiegericht, geen technische foutcodes tonen in primaire UX.
 
 ### Progress
 - Bij acties >1s: progress UI tonen.

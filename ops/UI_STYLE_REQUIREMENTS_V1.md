@@ -24,7 +24,8 @@ Kernbelofte in UI: **minder repetitie, meer controle, sneller resultaat**.
 - Achtergrond: licht en schoon (hoge leesbaarheid).
 - Contrast: donker op licht voor hoofdtekst.
 - CTA’s: duidelijk, compact, niet schreeuwerig.
-- Vormtaal: afgeronde hoeken, zachte schaduw, veel witruimte.
+- Vormtaal: afgeronde vierkante componenten (radius ±10–14px), géén pill-buttons als standaard.
+- Zachte schaduw + veel witruimte voor duidelijke overzichtsblokken.
 
 ### Componentgevoel
 - Buttons: solide primary + subtiele secondary.
@@ -77,6 +78,8 @@ Kernbelofte in UI: **minder repetitie, meer controle, sneller resultaat**.
 - CTA boven de vouw (zonder te scrollen zichtbaar).
 - Cases/resultaten snel scanbaar met impact (tijd/repetitie besparing).
 - Formulieren kort houden, alleen noodzakelijke velden.
+- Gebruik klantvriendelijke toast-notificaties (geen technische backendtekst in UI).
+- Overzichtsblokken verplicht: intakestatus, beslisstappen, expected output.
 - Mobiel eerst leesbaar (responsive als standaard, niet als nagedachte).
 
 ---

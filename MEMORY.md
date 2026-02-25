@@ -320,3 +320,25 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: Telegram callback GO->build trigger implementeren zonder GitHub tussenschakel.
+
+## 2026-02-25 Website visual harmonisatie (Robin)
+1. **Facts**
+- Robin vroeg om website-look gelijk te trekken met Brood/VH referenties: geen pill-buttons, duidelijkere overzichten, sterkere visuele presentatie.
+- Robin wilde klantvriendelijke UX zonder technische statusblokken.
+
+2. **Decisions**
+- Buttonstijl aangepast naar afgerond-vierkant (radius 10-14px) als standaard.
+- Intake UI houdt alleen nette toasts; technische details blijven uit klantzicht.
+- Homepage uitgebreid met duidelijk overzichtsblok + visuele KPI cards.
+
+3. **Ideas**
+- Volgende iteratie: echte projectfoto’s/screenshots per case toevoegen i.p.v. abstracte visual cards.
+
+4. **Artifacts**
+- `projects/bedrijf-website/index.html`
+- `projects/bedrijf-website/assets/styles.css`
+- `ops/UI_STYLE_REQUIREMENTS_V1.md`
+- `ops/ADDIN_HUISSTIJL_HANDBOEK_V1.md`
+
+5. **Open actions**
+- Owner Robin/Zeus: shortlist van echte visuals/foto’s aanleveren voor homepage/case modules.
