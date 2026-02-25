@@ -50,4 +50,5 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus: monitor eerste productie-run van Task A (Batch Sheet Renamer) tot QA handoff.
-- Owner Robin: JA/NEE keuzes blijven in Directie vastleggen voor auditspoor.
+- Owner Robin: JA/NEE keuzes blijven in privéchat/Directie vastleggen voor auditspoor.
+- Owner Zeus: wekelijkse roster-review uitvoeren volgens `ops/AGENT_ROSTER_STATUS.md`.

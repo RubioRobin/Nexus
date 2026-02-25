@@ -40,12 +40,21 @@ Owner: Robin (final decisions) / Zeus (execution)
 - Every meaningful finding must be shared with impacted teams.
 
 ## 4) Agent Governance
-- Fixed core agents:
+- Active core agents (daily execution):
   - Zeus/main (orchestration, GO/NO-GO)
   - Athena (research)
-  - Hephaistos (build)
-  - Themis (QA)
+  - Hermes (intake triage)
   - Chronos (planning)
+  - Hephaistos (build)
+  - Themis (QA/release gate)
+- Specialist agents (on-demand, only when needed):
+  - Daedalus (architecture), Hades (infra), Metis (strategy), Atlas/Triton (platform support),
+  - Janus/Nemesis (risk/review), Iris/Hypatia/Mnemosyne (research-knowledge support),
+  - Odysseus/Pandora/Harmonia/Oracle/Hermes_Integration/Kronos (advisory or overflow).
+- Roster policy:
+  - New work starts in core flow first; specialist only by explicit need.
+  - Avoid duplicate ownership: exactly one owner per active task.
+  - If a specialist adds no value for 2 weeks, move to standby.
 - Max autonomy per run: 3 concrete steps
 - Run timebox: 30 minutes
 - Repeat-failure rule: 2x same error => auto-pause + escalate
@@ -84,6 +93,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 
 ## 7) Telegram Role (Operational Source of Truth)
 - Telegram is the operational overview (not long execution commentary).
+- Besluitvorming (GO/NO-GO) verloopt primair via privéchat Robin ↔ Zeus; lane-kanalen zijn info-first.
 - Standard flow (lane channels):
   - Research → Directie-beslischeck (JA/NEE) → Intake → Planning → Codeurs → QA-Release → Directie GO/NO-GO → Done
 - Planning agent updates status after Robin JA op oplossingsrichting.
