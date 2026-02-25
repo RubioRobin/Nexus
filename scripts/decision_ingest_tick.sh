@@ -19,3 +19,4 @@ for f in \
 done
 
 /usr/bin/node scripts/decision_ingest_from_telegram.mjs
+/usr/bin/node scripts/auto_start_registered_builds.mjs
