@@ -32,3 +32,9 @@ Aanbevolen inhoud:
 - `src/`
 - `artifacts/` (`.dll` + `.addin`)
 - `README.md`
+
+## Geactiveerde eigen add-ins (gemigreerd)
+
+- `eigen-addins/revit-batch-sheet-renamer-v1/`
+- `eigen-addins/revit-views-sheets-generator/`
+- `eigen-addins/VH_addin/`

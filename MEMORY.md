@@ -364,3 +364,25 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: bestaande eigen add-ins gefaseerd verplaatsen naar `addins/eigen-addins/` met behoud van build-paden.
+
+## 2026-02-25 Uitvoering add-in migratie (Robin)
+1. **Facts**
+- Robin gaf akkoord om de nieuwe add-in mappenstructuur direct ook operationeel toe te passen.
+- Bestaande eigen add-ins zijn gekopieerd naar de nieuwe centrale mapstructuur.
+
+2. **Decisions**
+- `addins/eigen-addins/` is de actieve verzamelmap voor eigen add-ins.
+- Huidige bronlocaties blijven voorlopig bestaan voor compatibiliteit; migratie gebeurt gefaseerd.
+
+3. **Ideas**
+- Volgende stap: build scripts laten wijzen naar de paden onder `addins/eigen-addins/`.
+
+4. **Artifacts**
+- `addins/eigen-addins/revit-batch-sheet-renamer-v1/`
+- `addins/eigen-addins/revit-views-sheets-generator/`
+- `addins/eigen-addins/VH_addin/`
+- `addins/README.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: build- en releasepaden standaardiseren op `addins/eigen-addins/*`.
+

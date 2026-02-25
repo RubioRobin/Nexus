@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "aaOC5XSL0PQ=",
+  "success": true,
+  "projectFilePath": "/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/BatchSheetRenamer.csproj",
+  "expectedPackageFiles": [
+    "/home/rubiorobin/.nuget/packages/revit_all_main_versions_api_x64/2025.0.0/revit_all_main_versions_api_x64.2025.0.0.nupkg.sha512",
+    "/home/rubiorobin/.nuget/packages/microsoft.windowsdesktop.app.ref/8.0.24/microsoft.windowsdesktop.app.ref.8.0.24.nupkg.sha512"
+  ],
+  "logs": []
+}

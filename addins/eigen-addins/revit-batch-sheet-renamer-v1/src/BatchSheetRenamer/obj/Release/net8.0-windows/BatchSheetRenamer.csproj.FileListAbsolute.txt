@@ -1,0 +1,17 @@
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.csproj.AssemblyReference.cache
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.GeneratedMSBuildEditorConfig.editorconfig
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.csproj.CoreCompileInputs.cache
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/bin/Release/net8.0-windows/BatchSheetRenamer.deps.json
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/bin/Release/net8.0-windows/BatchSheetRenamer.dll
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/bin/Release/net8.0-windows/BatchSheetRenamer.pdb
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.dll
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/refint/BatchSheetRenamer.dll
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.pdb
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/ref/BatchSheetRenamer.dll
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamerForm.baml
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/Styles/BrandTokens.baml
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/Styles/Controls.baml
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamerForm.g.cs
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer_MarkupCompile.cache
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.g.resources
+/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/src/BatchSheetRenamer/obj/Release/net8.0-windows/BatchSheetRenamer.sourcelink.json
