@@ -1,4 +1,27 @@
-<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Contact — NEXUS</title><link rel="stylesheet" href="assets/styles.css"></head><body>
-<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">NEXUS</a><nav><a href="index.html">Home</a><a href="diensten.html">Diensten</a><a href="over-ons.html">Over Ons</a><a href="cases.html">Cases</a><a class="active" href="contact.html">Contact</a></nav></div></header>
-<main><section><div class="container"><h1 class="section-title reveal">Contact</h1><p class="section-sub reveal">Vertel kort waar je tegenaan loopt. Wij vertalen dat naar een concreet plan.</p><div class="card reveal"><p><strong>E-mail:</strong> info@nexus.local</p><p><strong>Reactietijd:</strong> binnen 1 werkdag</p><div class="actions"><a class="btn primary" href="mailto:info@nexus.local">Stuur e-mail</a><a class="btn ghost" href="diensten.html">Eerst diensten bekijken</a></div></div></div></section></main>
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Start Intake — NEXUS</title><link rel="stylesheet" href="assets/styles.css"></head><body>
+<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">NEXUS</a><nav><a href="index.html">Home</a><a href="diensten.html">Oplossingen</a><a href="cases.html">Cases</a><a href="over-ons.html">Werkwijze</a><a class="active" href="contact.html">Start intake</a></nav></div></header>
+<main><section><div class="container"><h1 class="section-title reveal">Start intake</h1><p class="section-sub reveal">Vertel kort het probleem. Wij vertalen dit naar scope, aanpak en opleverpad.</p>
+
+<div class="card reveal">
+<form id="intakeForm" class="intake-form" novalidate>
+  <div class="grid two">
+    <label>Naam<input type="text" name="name" required placeholder="Robin" /></label>
+    <label>Bedrijf / team<input type="text" name="company" required placeholder="Nexus" /></label>
+  </div>
+  <label>E-mail<input type="email" name="email" required placeholder="naam@bedrijf.nl" /></label>
+  <label>Wat kost nu het meeste tijd?<textarea name="problem" required minlength="20" placeholder="Bijv. handmatig sheets hernoemen en controleren bij elke release."></textarea></label>
+  <div class="grid two">
+    <label>Gewenste uitkomst<input type="text" name="outcome" required placeholder="Bijv. 70% minder handwerk" /></label>
+    <label>Urgentie<select name="urgency" required><option value="">Kies</option><option>Laag (deze maand)</option><option>Midden (deze week)</option><option>Hoog (zsm)</option></select></label>
+  </div>
+  <label>Budgetindicatie<select name="budget" required><option value="">Kies</option><option>€1k–€3k</option><option>€3k–€7.5k</option><option>€7.5k+</option></select></label>
+
+  <div class="actions">
+    <button class="btn primary" type="submit">Verstuur intake</button>
+    <a class="btn ghost" href="diensten.html">Eerst oplossingen bekijken</a>
+  </div>
+  <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
+</form>
+</div>
+</div></section></main>
 <footer class="footer"><div class="container">NEXUS</div></footer><script src="assets/script.js"></script></body></html>
