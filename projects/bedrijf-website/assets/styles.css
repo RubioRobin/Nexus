@@ -194,6 +194,27 @@ nav a.active {
 
 .hero-main h1 {
   max-width: 100%;
+  font-size: clamp(2.9rem, 7vw, 5.1rem);
+  line-height: 1.05;
+}
+
+.hero-lead {
+  max-width: 760px;
+  font-size: 1.26rem;
+  margin-bottom: 26px;
+}
+
+.hero-link {
+  display: inline-flex;
+  align-items: center;
+  color: var(--forest-700);
+  font-weight: 700;
+  text-decoration: none;
+  padding: 0 8px;
+}
+
+.hero-link:hover {
+  text-decoration: underline;
 }
 
 .badge {
