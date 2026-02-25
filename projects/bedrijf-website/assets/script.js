@@ -133,7 +133,7 @@ if(form){
     const data=Object.fromEntries(fd.entries());
 
     if(!form.checkValidity() || (data.problem||'').trim().length<20){
-      showToast('error','Controleer je aanvraag','Vul alle verplichte velden in en beschrijf je probleem in minimaal 20 tekens.');
+      showToast('error','Hoe duidelijker je aanvraag, hoe sneller je oplossing','Vul alle verplichte velden in en beschrijf concreet: wat kost nu tijd, wat moet automatisch gaan, en wat je gewenste uitkomst is.');
       track('intake_form_error',{reason:'validation'});
       return;
     }
