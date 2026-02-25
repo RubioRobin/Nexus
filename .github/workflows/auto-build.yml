@@ -1,6 +1,8 @@
 name: auto-build-intake
 
 on:
+  issues:
+    types: [opened, labeled]
   workflow_dispatch:
     inputs:
       issue_number:
@@ -15,12 +17,32 @@ on:
 
 jobs:
   auto-build:
+    if: github.event_name == 'workflow_dispatch' || contains(join(github.event.issue.labels.*.name, ','), 'auto-build')
     runs-on: ubuntu-latest
     permissions:
       issues: write
       contents: read
       actions: read
     steps:
+      - name: Resolve inputs
+        id: vars
+        shell: bash
+        run: |
+          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
+            echo "issue_number=${{ github.event.inputs.issue_number }}" >> "$GITHUB_OUTPUT"
+            echo "task_id=${{ github.event.inputs.task_id }}" >> "$GITHUB_OUTPUT"
+            echo "trace_id=${{ github.event.inputs.trace_id }}" >> "$GITHUB_OUTPUT"
+          else
+            ISSUE_NUMBER="${{ github.event.issue.number }}"
+            TITLE="${{ github.event.issue.title }}"
+            TASK_ID=$(echo "$TITLE" | sed -E 's/^\[AUTO BUILD\] ([^ ]+).*/\1/;t;d')
+            if [[ -z "$TASK_ID" ]]; then TASK_ID="AUTO-ISSUE-${ISSUE_NUMBER}"; fi
+            TRACE_ID="NX-ISSUE-${ISSUE_NUMBER}"
+            echo "issue_number=${ISSUE_NUMBER}" >> "$GITHUB_OUTPUT"
+            echo "task_id=${TASK_ID}" >> "$GITHUB_OUTPUT"
+            echo "trace_id=${TRACE_ID}" >> "$GITHUB_OUTPUT"
+          fi
+
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -33,9 +55,9 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const issue_number = Number('${{ github.event.inputs.issue_number }}');
-            const taskId = '${{ github.event.inputs.task_id }}';
-            const traceId = '${{ github.event.inputs.trace_id }}';
+            const issue_number = Number('${{ steps.vars.outputs.issue_number }}');
+            const taskId = '${{ steps.vars.outputs.task_id }}';
+            const traceId = '${{ steps.vars.outputs.trace_id }}';
             const body = [
               `🚀 Auto-build gestart voor **${taskId}**`,
               `Trace ID: ${traceId}`,
@@ -53,21 +75,21 @@ jobs:
             });
 
       - name: Build from intake issue
-        run: ./scripts/auto_build_from_issue.sh "${{ github.event.inputs.issue_number }}" "${{ github.event.inputs.task_id }}" "${{ github.event.inputs.trace_id }}"
+        run: ./scripts/auto_build_from_issue.sh "${{ steps.vars.outputs.issue_number }}" "${{ steps.vars.outputs.task_id }}" "${{ steps.vars.outputs.trace_id }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: addin-${{ github.event.inputs.task_id }}
-          path: projects/intake-builds/${{ github.event.inputs.task_id }}/artifacts/*
+          name: addin-${{ steps.vars.outputs.task_id }}
+          path: projects/intake-builds/${{ steps.vars.outputs.task_id }}/artifacts/*
 
       - name: Success comment
         if: success()
         uses: actions/github-script@v7
         with:
           script: |
-            const issue_number = Number('${{ github.event.inputs.issue_number }}');
-            const taskId = '${{ github.event.inputs.task_id }}';
+            const issue_number = Number('${{ steps.vars.outputs.issue_number }}');
+            const taskId = '${{ steps.vars.outputs.task_id }}';
             const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = [
               `✅ Auto-build geslaagd voor **${taskId}**`,
@@ -86,8 +108,8 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const issue_number = Number('${{ github.event.inputs.issue_number }}');
-            const taskId = '${{ github.event.inputs.task_id }}';
+            const issue_number = Number('${{ steps.vars.outputs.issue_number }}');
+            const taskId = '${{ steps.vars.outputs.task_id }}';
             const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
             const body = [
               `❌ Auto-build mislukt voor **${taskId}**`,
