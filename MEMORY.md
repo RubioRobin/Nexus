@@ -73,3 +73,22 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: inkomende XAML-snippets structureren in een herbruikbare referentie-database voor Revit UI-implementaties.
+
+## 2026-02-25 14:11 Huisstijl-handboek opdracht (Robin)
+1. **Facts**
+- Robin vroeg om een vast intern handboek voor add-in standaarden, met focus op visuele huisstijl (kleuren, rondingen, knoppen).
+- Robin vroeg expliciet om eventueel skills aan te maken voor deze taak.
+
+2. **Decisions**
+- Handboek `ops/ADDIN_HUISSTIJL_HANDBOEK_V1.md` is leidend voor add-in UI uitvoering.
+- Skill `skills/revit-ui-huisstijl/SKILL.md` is aangemaakt voor consistente toepassing.
+
+3. **Ideas**
+- Volgende stap: gedeelde XAML ResourceDictionary opzetten als technische implementatie van het handboek.
+
+4. **Artifacts**
+- `ops/ADDIN_HUISSTIJL_HANDBOEK_V1.md`
+- `skills/revit-ui-huisstijl/SKILL.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: handboekregels in komende add-ins hard afdwingen via review-checklist.
