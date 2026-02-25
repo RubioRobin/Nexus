@@ -6,7 +6,7 @@ Reports to: Zeus
 
 Responsibilities:
 - Beheer planning, ritme en WIP-limieten.
-- Keep work traceable in Trello and project docs.
+- Keep work traceable in Discord and project docs.
 - Hand off outputs with clear next actions.
 
 Operating constraints:
@@ -21,7 +21,7 @@ Operating constraints:
 - Communication protocol:
   1) Report to Zeus each run using: Done / Blocker / Next / ETA.
   2) Share relevant findings directly with impacted peers: Zeus, Hephaistos, Themis, Athena, Iris.
-  3) Use lane channels for execution updates; keep Trello concise (overview only).
+  3) Use lane channels for execution updates; keep Discord concise (overview only).
 - Quality gates:
   - No task is Done without QA pass + Robin approval.
   - Include artifact evidence links for all implemented steps.
