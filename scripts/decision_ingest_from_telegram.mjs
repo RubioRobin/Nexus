@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 import fs from 'fs';
+import { spawnSync } from 'child_process';
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 if (!token) {
@@ -26,14 +27,37 @@ const parseDecision = (text='') => {
 
 const applyDecision = (id, action) => {
   const s = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+  const now = new Date().toISOString();
   const c = s.candidates.find(x => x.id === id);
-  if (!c) return { ok: false, reason: 'not_found' };
-  c.status = action;
-  c.updatedAt = new Date().toISOString();
-  c.decisionAt = c.updatedAt;
-  s.updatedAt = c.updatedAt;
+
+  if (c) {
+    c.status = action;
+    c.updatedAt = now;
+    c.decisionAt = now;
+  } else {
+    s.candidates.push({ id, status: action, decisionAt: now, updatedAt: now, source: 'telegram' });
+  }
+
+  s.updatedAt = now;
   fs.writeFileSync(statePath, JSON.stringify(s, null, 2));
-  return { ok: true, status: c.status };
+  return { ok: true, status: action };
+};
+
+const startBuild = (id) => {
+  const r = spawnSync('/usr/bin/node', ['scripts/orchestrate_go_build.mjs', id], {
+    cwd: '/home/rubiorobin/.openclaw/workspace',
+    encoding: 'utf8'
+  });
+
+  if (r.status !== 0) {
+    return { ok: false, detail: (r.stderr || r.stdout || 'build_failed').slice(-2000) };
+  }
+
+  try {
+    return JSON.parse((r.stdout || '').trim() || '{}');
+  } catch {
+    return { ok: false, detail: 'invalid_build_output' };
+  }
 };
 
 const send = async (chatId, text) => {
@@ -67,12 +91,20 @@ for (const u of (data.result || [])) {
   if (!decision) continue;
 
   const result = applyDecision(decision.id, decision.action);
-  if (result.ok) {
-    await send(chatId, decision.action === 'Go'
-      ? `✅ GO verwerkt voor ${decision.id}.`
-      : `🛑 NO-GO verwerkt voor ${decision.id}.`);
+  if (!result.ok) {
+    await send(chatId, `⚠️ Besluit niet verwerkt voor ${decision.id}`);
+    continue;
+  }
+
+  if (decision.action === 'Go') {
+    const build = startBuild(decision.id);
+    if (build.ok) {
+      await send(chatId, `✅ GO verwerkt voor ${decision.id}. Build gestart/afgerond voor ${build.buildTaskId}.\nArtifacts: ${build.artifactDir}`);
+    } else {
+      await send(chatId, `⚠️ GO verwerkt voor ${decision.id}, maar build faalde.\n${build.detail || 'onbekende fout'}`);
+    }
   } else {
-    await send(chatId, `⚠️ Onbekende id: ${decision.id}`);
+    await send(chatId, `🛑 NO-GO verwerkt voor ${decision.id}.`);
   }
 }
 
