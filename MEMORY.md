@@ -232,3 +232,25 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: productie-hardening (auth + database + notif integratie).
+
+## 2026-02-25 Vercel auto-build setup
+1. **Facts**
+- Robin gaf opdracht om alles klaar te zetten voor automatische add-in instroom vanaf website.
+- Vercel serverless API routes toegevoegd voor intake en build queue.
+
+2. **Decisions**
+- Intake schrijft centraal naar GitHub Issues (`intake`, `auto-build`, `revit-addon`).
+- Frontend post standaard naar `/api` (Vercel-native) i.p.v. localhost backend.
+
+3. **Ideas**
+- Volgende stap: GitHub Action uitbreiden van kickoff naar echte codegen/build/artifact pipeline.
+
+4. **Artifacts**
+- `projects/bedrijf-website/api/intake.js`
+- `projects/bedrijf-website/api/build-queue.js`
+- `projects/bedrijf-website/vercel.json`
+- `.github/workflows/auto-build.yml`
+- `ops/VERCEL_INTAKE_AUTOBUILD_SETUP.md`
+
+5. **Open actions**
+- Owner Robin: Vercel env vars zetten (`GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, optioneel workflow vars).

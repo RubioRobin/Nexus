@@ -18,7 +18,7 @@ document.querySelectorAll('.track-cta').forEach(btn=>{
   btn.addEventListener('click',()=>track('cta_click',{id:btn.dataset.cta||'unknown'}));
 });
 
-const INTAKE_API_BASE=(window.NEXUS_INTAKE_API_BASE||'http://localhost:8787');
+const INTAKE_API_BASE=(window.NEXUS_INTAKE_API_BASE||'/api');
 
 const form=document.getElementById('intakeForm');
 if(form){
@@ -152,7 +152,7 @@ if(form){
       if(res.ok){
         const out=await res.json();
         apiOk=true;
-        feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} staat in centrale queue (${out.assignedTo}).`;
+        feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} staat in centrale queue (${out.assignedTo}). Issue: #${out.issueNumber}`;
       }
     }catch(_err){
       // fallback below
