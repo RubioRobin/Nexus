@@ -22,6 +22,32 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 ## Reusable Patterns
 - **Probleem:** Stijl/UX raakt inconsistent tussen web en Revit add-ins bij snelle bouw.
-  - **Oplossing:** Gebruik vaste referentieset (VH_IFC_Viewer, Brood, VH_addin) + design baseline in `ops/DESIGN_REFERENCE.md`.
-  - **Waar staat het:** `ops/DESIGN_REFERENCE.md`
+  - **Oplossing:** Gebruik vaste referentieset (VH_IFC_Viewer, Brood, VH_addin, Nexus) + design baseline in `ops/DESIGN_REFERENCE.md` en UI-regels in `ops/UI_STYLE_REQUIREMENTS_V1.md`.
+  - **Waar staat het:** `ops/DESIGN_REFERENCE.md`, `ops/UI_STYLE_REQUIREMENTS_V1.md`
   - **Wanneer opnieuw gebruiken:** Bij elke nieuwe add-in, website-update, of intake waar UI/branding onderdeel is.
+
+## 2026-02-25 Operational Update
+1. **Facts**
+- Telegram is nu command center met lane-kanalen + Directie.
+- Cron-automations draaien voor 08:00, 12:30, 19:30, 3h stale-check en weekly scorecard.
+- Web search is geactiveerd (Brave) voor online probleemonderzoek.
+
+2. **Decisions**
+- Flow: Research -> Robin JA/NEE -> Intake -> Planning -> Codeurs -> QA -> Directie GO/NO-GO.
+- Stale escalatiegrens is 3 uur.
+- Revit release-eis: `.dll` + `.addin`, build zonder errors/warnings.
+- Bij ready-to-test: altijd GitHub push + testmelding in Directie.
+
+3. **Ideas**
+- Website benchmark dagelijks door Athena voor continue conversieverbetering.
+- Weekly operating scorecard om directie-besluitvorming te versnellen.
+
+4. **Artifacts**
+- `ops/OPERATING_PLAYBOOK_V1.md`
+- `ops/TELEGRAM_CHANNEL_MAP.md`
+- `ops/DESIGN_REFERENCE.md`
+- `ops/UI_STYLE_REQUIREMENTS_V1.md`
+
+5. **Open actions**
+- Owner Zeus: monitor eerste productie-run van Task A (Batch Sheet Renamer) tot QA handoff.
+- Owner Robin: JA/NEE keuzes blijven in Directie vastleggen voor auditspoor.

@@ -75,6 +75,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 - Done criteria (task): QA pass + Robin approval
 - Release artifact-eis (Revit add-ins): lever altijd zowel `.dll` als `.addin` bestand aan Robin.
 - Build kwaliteitseis: build zonder errors of warnings vóór QA handoff.
+- Release administratie-eis: bij 'ready to test' altijd push naar GitHub + testmelding in Directie met link naar branch/commit/release.
 - QA policy: strict by default, but with controlled MVP path to avoid paralysis
 - Research usefulness threshold: 2+ sources and preferably implementation proposal.
 - Opportunity intake threshold: probleem moet minimaal 2x gesignaleerd zijn (meerdere signalen/voorbeelden) voordat het naar Directie-beslischeck gaat.
@@ -114,6 +115,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 - Roadmap style: rolling 2-week sprints
 - Success proof priority: autonomous system behavior + delivery consistency
 - Playbook governance: Zeus maintains, Robin weekly review + feedback loop
+- Website completion track is active; Athena levert dagelijks benchmark-onderzoek + verbetervoorstellen voor Nexus site.
 
 ## 10) Weekly Improvement Loop
 - Weekly feedback moment required:
