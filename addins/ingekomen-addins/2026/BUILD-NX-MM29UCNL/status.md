@@ -10,3 +10,4 @@
 - `.addin`
 - Build zonder errors/warnings
 - QA checklist: `addins/eigen-addins/revit-batch-sheet-renamer-v1/QA_CHECKLIST_REVT2025.md`
+- QA result template: `addins/eigen-addins/revit-batch-sheet-renamer-v1/QA_RESULT_TEMPLATE.md`

@@ -513,6 +513,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Robin/QA: checklist uitvoeren en GO/NO-GO terugmelden.
 
+## 2026-02-25 GO Robin: QA invultemplate toegevoegd
+1. **Facts**
+- Robin gaf GO om ook een strak QA-invultemplate toe te voegen.
+- Template bevat PASS/FAIL, bewijs-screenshots en directieadvies GO/NO-GO.
+
+2. **Decisions**
+- QA-terugkoppeling voor intake `BUILD-NX-MM29UCNL` loopt via gestandaardiseerd format.
+
+3. **Ideas**
+- Template hergebruiken als standaard voor alle nieuwe intake-builds.
+
+4. **Artifacts**
+- `addins/eigen-addins/revit-batch-sheet-renamer-v1/QA_RESULT_TEMPLATE.md`
+- `addins/ingekomen-addins/2026/BUILD-NX-MM29UCNL/status.md`
+
+5. **Open actions**
+- Owner Robin/QA: template invullen na runtime test en directieadvies plaatsen.
+
 ## 2026-02-25 Cron setup check (Robin)
 1. **Facts**
 - Robin vroeg om volledige croncheck en lijst met keep/add voor huidige setup.
