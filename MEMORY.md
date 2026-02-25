@@ -342,3 +342,25 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Robin/Zeus: shortlist van echte visuals/foto’s aanleveren voor homepage/case modules.
+
+## 2026-02-25 Duidelijke add-in mappenstructuur (Robin)
+1. **Facts**
+- Robin vroeg om een duidelijke structuur voor inkomende aanvragen vanuit website/intake.
+- BUILD-NX-MM29UCNL is bevestigd als eerste inkomende website-aanvraag.
+
+2. **Decisions**
+- Centrale add-in root: `addins/`.
+- Splitsing verplicht in twee hoofdmappen: `addins/eigen-addins/` en `addins/ingekomen-addins/`.
+- Inkomende aanvragen worden per jaar + intake-ID opgeslagen.
+
+3. **Ideas**
+- Volgende stap: automatische intake writer die direct een map onder `addins/ingekomen-addins/<jaar>/<intake-id>/` aanmaakt.
+
+4. **Artifacts**
+- `addins/README.md`
+- `addins/eigen-addins/README.md`
+- `addins/ingekomen-addins/2026/BUILD-NX-MM29UCNL/intake.md`
+- `addins/ingekomen-addins/2026/BUILD-NX-MM29UCNL/status.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: bestaande eigen add-ins gefaseerd verplaatsen naar `addins/eigen-addins/` met behoud van build-paden.
