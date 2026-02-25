@@ -145,7 +145,7 @@ if(form){
     let apiOk=false;
     let apiError='';
     try{
-      const res=await fetch(`${INTAKE_API_BASE}/api/intake`,{
+      const res=await fetch(`${INTAKE_API_BASE}/intake`,{
         method:'POST',
         headers:{'Content-Type':'application/json'},
         body:JSON.stringify(task)
