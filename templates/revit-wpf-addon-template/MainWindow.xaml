@@ -2,8 +2,8 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Auto Add-in"
-        Width="520"
-        Height="340"
+        Width="560"
+        Height="380"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="16">
         <Grid.RowDefinitions>
@@ -12,13 +12,26 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Automatisch gegenereerde Revit add-in"
-                   FontSize="20" FontWeight="SemiBold"/>
+        <StackPanel>
+            <TextBlock Text="NEXUS Revit add-in"
+                       FontSize="22" FontWeight="SemiBold"/>
+            <TextBlock Text="Werkende basis vanuit intake"
+                       Margin="0,2,0,0" Foreground="#4D6159"/>
+        </StackPanel>
 
-        <Border Grid.Row="1" Margin="0,12,0,12" Padding="12" BorderThickness="1" BorderBrush="#D7E0DA" CornerRadius="10">
-            <TextBlock x:Name="TxtSummary" TextWrapping="Wrap"/>
-        </Border>
+        <StackPanel Grid.Row="1" Margin="0,14,0,12">
+            <Border Padding="12" BorderThickness="1" BorderBrush="#D7E0DA" CornerRadius="10" Background="#FAFCFB">
+                <TextBlock x:Name="TxtSummary" TextWrapping="Wrap"/>
+            </Border>
 
-        <Button Grid.Row="2" Content="Sluiten" Width="120" Height="32" HorizontalAlignment="Right" Click="Close_Click"/>
+            <Border Margin="0,10,0,0" Padding="12" BorderThickness="1" BorderBrush="#D7E0DA" CornerRadius="10" Background="#FFFFFF">
+                <TextBlock x:Name="TxtResult" TextWrapping="Wrap" Foreground="#1B4332"/>
+            </Border>
+        </StackPanel>
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="Run testactie" Width="140" Height="34" Margin="0,0,10,0" Click="RunTest_Click"/>
+            <Button Content="Sluiten" Width="120" Height="34" Click="Close_Click"/>
+        </StackPanel>
     </Grid>
 </Window>

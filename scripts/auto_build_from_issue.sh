@@ -27,7 +27,9 @@ python3 - <<PY
 from pathlib import Path
 p=Path("$SRC_DIR/MainWindow.xaml.cs")
 s=p.read_text()
-s=s.replace("Deze add-in is automatisch opgebouwd vanuit intake.\\n\\nPas nu de businesslogica aan en lever .dll + .addin op.", f"Auto-build voor taak: $TASK_ID\\nTrace: $TRACE_ID\\nIssue: #$ISSUE_NUMBER\\nBedrijf: $COMPANY_NAME")
+s=s.replace("__TASK_ID__", "$TASK_ID")
+s=s.replace("__TRACE_ID__", "$TRACE_ID")
+s=s.replace("__INTAKE_ID__", "$TASK_ID")
 p.write_text(s)
 
 p2=Path("$SRC_DIR/App.cs")

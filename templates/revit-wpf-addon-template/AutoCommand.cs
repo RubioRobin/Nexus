@@ -9,6 +9,8 @@ namespace AutoAddin
     {
         public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
         {
+            AddinRuntimeContext.DocumentTitle = commandData?.Application?.ActiveUIDocument?.Document?.Title ?? "Onbekend project";
+
             var win = new MainWindow();
             win.ShowDialog();
             return Result.Succeeded;
