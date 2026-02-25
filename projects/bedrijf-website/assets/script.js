@@ -127,6 +127,24 @@ if(form){
     },4200);
   };
 
+  const showConfirmationModal=()=>{
+    const overlay=document.createElement('div');
+    overlay.className='confirm-overlay';
+    overlay.innerHTML=`
+      <div class="confirm-card" role="dialog" aria-modal="true" aria-label="Aanvraag ontvangen">
+        <h3 class="confirm-title">Bedankt voor je aanvraag bij Nexus</h3>
+        <p class="confirm-text">We gaan direct voor je aan de slag. Als we extra vragen hebben, nemen we contact op via het e-mailadres dat je hebt ingevuld.</p>
+        <div class="confirm-actions">
+          <button class="btn primary" type="button" id="confirmCloseBtn">Top, bedankt</button>
+        </div>
+      </div>`;
+    document.body.appendChild(overlay);
+
+    const close=()=>overlay.remove();
+    overlay.addEventListener('click',(e)=>{ if(e.target===overlay) close(); });
+    overlay.querySelector('#confirmCloseBtn')?.addEventListener('click',close);
+  };
+
   form.addEventListener('submit',async e=>{
     e.preventDefault();
     const fd=new FormData(form);
@@ -156,7 +174,7 @@ if(form){
       const out=await res.json().catch(()=>({}));
       if(res.ok){
         apiOk=true;
-        showToast('success','Aanvraag ontvangen',`Je aanvraag is doorgestuurd naar intake. Referentie: ${task.taskId}.`);
+        showConfirmationModal();
       } else {
         apiError = out?.error || `HTTP ${res.status}`;
       }
