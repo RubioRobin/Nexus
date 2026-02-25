@@ -636,3 +636,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus/codeur: directe Telegram GO -> build-orchestratie koppeling afronden en bevestigen met test-run.
 
+## 2026-02-25 21:20 PI-first opslagbeleid (Robin)
+1. **Facts**
+- Robin wil dat vrijwel alles intern op de Pi draait (code, intakes, regels, memory, uitvoering).
+- GitHub moet beperkt blijven tot website + borging van intake-omschrijvingen + backup eindproducten.
+
+2. **Decisions**
+- PI-first operating mode is nu expliciet vastgelegd als leidend beleid.
+- Cron decision-ingest laadt voortaan env-bestanden zodat Telegram token ook buiten interactieve shells beschikbaar is.
+
+3. **Ideas**
+- Volgende stap: directe build-orchestrator trigger aan decision-ingest koppelen en intake-dossier direct bij intake aanmaken op Pi.
+
+4. **Artifacts**
+- `ops/PI_FIRST_DELIVERY_POLICY_V1.md`
+- `ops/REVIT_ADDIN_PIPELINES_V1.md`
+- `scripts/decision_ingest_tick.sh`
+
+5. **Open actions**
+- Owner Robin/Zeus: Telegram env op Pi valideren in `.env`/`.env.local` en GO-test opnieuw draaien.
+- Owner Zeus/codeur: ingest -> orchestrator directe koppeling afronden.
+

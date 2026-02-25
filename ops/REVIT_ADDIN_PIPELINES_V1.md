@@ -9,7 +9,9 @@ Twee parallelle productielijnen draaien continu:
 1. **Eigen Ontwikkeling Pipeline** (proactief, marktgedreven)
 2. **Client Intake Pipeline** (reactief, klantgedreven)
 
-Alle major updates lopen via **Telegram**. GitHub wordt alleen gebruikt voor website + add-in code/artifacts.
+Alle major updates lopen via **Telegram**. PI-first is leidend: operationele data/build/state lokaal op de Pi.
+GitHub wordt alleen gebruikt voor website + backup van intake-omschrijvingen/eindproducten.
+Zie ook: `ops/PI_FIRST_DELIVERY_POLICY_V1.md`.
 
 ---
 
