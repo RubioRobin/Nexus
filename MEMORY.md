@@ -534,3 +534,30 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus: bij volgende weekly check evalueren of extra specialist tijdelijk actief moet worden.
 
+## 2026-02-25 Uitvoering verzoek Robin (2,3,dashboard,installer)
+1. **Facts**
+- Robin vroeg om decision-ingest af te maken, intake hardening toe te voegen, dashboard te bouwen en installer-output te leveren.
+
+2. **Decisions**
+- Decision-ingest draait nu via Telegram polling script + cron tick.
+- Intake API heeft basis hardening (origin/rate-limit/honeypot/timing).
+- Dashboardpagina toegevoegd voor operationeel overzicht.
+- Auto-build artifacts bevatten nu ook installer scripts (.ps1/.bat) en optioneel zip package.
+
+3. **Ideas**
+- Volgende stap: decision-ingest verplaatsen naar webhook of queue voor stabielere scaling dan polling.
+
+4. **Artifacts**
+- `scripts/decision_ingest_from_telegram.mjs`
+- `scripts/decision_ingest_tick.sh`
+- `projects/bedrijf-website/api/intake.js`
+- `projects/bedrijf-website/dashboard.html`
+- `projects/bedrijf-website/contact.html`
+- `projects/bedrijf-website/assets/script.js`
+- `scripts/auto_build_from_issue.sh`
+- `ops/CRON_SETUP_V1.md`
+- `ops/WEBSITE_INTAKE_FACTORY_V1.md`
+
+5. **Open actions**
+- Owner Robin/Zeus: Vercel env `ALLOWED_ORIGINS` en Telegram ingest vars valideren in productie.
+

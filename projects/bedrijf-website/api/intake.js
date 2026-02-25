@@ -17,6 +17,35 @@ function qualify(task) {
   return { status, missing, impact, confidence, risk, scope, route, sla };
 }
 
+const RATE = new Map();
+const WINDOW_MS = 60 * 1000;
+const LIMIT = 6;
+
+const getIp = (req) => (req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').toString().split(',')[0].trim();
+
+function guardRequest(req, task) {
+  const allowRaw = process.env.ALLOWED_ORIGINS || '';
+  const allowed = allowRaw.split(',').map(s => s.trim()).filter(Boolean);
+  const origin = req.headers.origin || '';
+  if (allowed.length && origin && !allowed.includes(origin)) {
+    return 'Origin not allowed';
+  }
+
+  // Honeypot + minimum form fill time
+  if (task?.meta?.websiteTrap) return 'Bot trap triggered';
+  const startedAt = Number(task?.meta?.startedAt || 0);
+  if (startedAt && Date.now() - startedAt < 4000) return 'Submitted too fast';
+
+  const ip = getIp(req);
+  const now = Date.now();
+  const arr = (RATE.get(ip) || []).filter(t => now - t < WINDOW_MS);
+  arr.push(now);
+  RATE.set(ip, arr);
+  if (arr.length > LIMIT) return 'Rate limit exceeded';
+
+  return null;
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
@@ -24,6 +53,8 @@ export default async function handler(req, res) {
 
   try {
     const task = req.body || {};
+    const guard = guardRequest(req, task);
+    if (guard) return res.status(429).json({ ok: false, error: guard });
     if (!task.taskId || !task.traceId || !task.customer?.email || !task.intake?.problem) {
       return res.status(400).json({ ok: false, error: 'Invalid payload' });
     }

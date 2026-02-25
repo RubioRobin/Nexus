@@ -24,6 +24,11 @@
 - `POST /api/feedback` -> stuurt feedback naar Telegram
 - `GET /api/build-queue` -> statusmessage (telegram-gated mode)
 
+## Hardening (v1)
+- Origin allowlist optioneel via `ALLOWED_ORIGINS`.
+- Basic rate limiting (in-memory, request window) op intake endpoint.
+- Honeypot + minimale invultijd controle (`websiteTrap`, `startedAt`).
+
 ## Telegram output
 Per intake:
 - Athena research requested

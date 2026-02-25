@@ -62,4 +62,30 @@ cat > "$ART_DIR/${TASK_ID}.addin" <<XML
 </RevitAddIns>
 XML
 
+cat > "$ART_DIR/install_${TASK_ID}.ps1" <<'PS1'
+param(
+  [string]$SourceDir = ".",
+  [string]$TargetDir = "$env:APPDATA\\Autodesk\\Revit\\Addins\\2025"
+)
+New-Item -ItemType Directory -Force -Path $TargetDir | Out-Null
+Copy-Item -Force (Join-Path $SourceDir "__TASK__.dll") (Join-Path $TargetDir "__TASK__.dll")
+Copy-Item -Force (Join-Path $SourceDir "__TASK__.addin") (Join-Path $TargetDir "__TASK__.addin")
+Write-Host "Installed __TASK__ to $TargetDir"
+PS1
+sed -i "s/__TASK__/${TASK_ID}/g" "$ART_DIR/install_${TASK_ID}.ps1"
+
+cat > "$ART_DIR/install_${TASK_ID}.bat" <<BAT
+@echo off
+set SRC=%~dp0
+set TARGET=%APPDATA%\Autodesk\Revit\Addins\2025
+if not exist "%TARGET%" mkdir "%TARGET%"
+copy /Y "%SRC%${TASK_ID}.dll" "%TARGET%\${TASK_ID}.dll"
+copy /Y "%SRC%${TASK_ID}.addin" "%TARGET%\${TASK_ID}.addin"
+echo Installed ${TASK_ID} to %TARGET%
+BAT
+
+if command -v zip >/dev/null 2>&1; then
+  (cd "$ART_DIR" && zip -q "${TASK_ID}_package.zip" "${TASK_ID}.dll" "${TASK_ID}.addin" "install_${TASK_ID}.ps1" "install_${TASK_ID}.bat")
+fi
+
 echo "Built artifacts in: $ART_DIR"

@@ -77,6 +77,8 @@ const urgencyFromTarget = (dateStr = '') => {
 const intakeForm = document.getElementById('intakeForm');
 if (intakeForm) {
   track('intake_form_view');
+  const startedAtField = document.getElementById('startedAtField');
+  if (startedAtField) startedAtField.value = String(Date.now());
   intakeForm.addEventListener('focusin', () => track('intake_form_start'), { once: true });
 
   intakeForm.addEventListener('submit', async (e) => {
@@ -138,7 +140,11 @@ if (intakeForm) {
         'Build: 0 errors / 0 warnings',
         `Functioneel: ${data.successCriteria || 'doel behalen volgens intake'}`
       ],
-      handoff: 'Client intake track: eerst kwalificatie + Robin GO/NO-GO, daarna build.'
+      handoff: 'Client intake track: eerst kwalificatie + Robin GO/NO-GO, daarna build.',
+      meta: {
+        websiteTrap: data.website || '',
+        startedAt: Number(data.startedAt || 0)
+      }
     };
 
     const submissions = JSON.parse(localStorage.getItem('nexus_intakes') || '[]');

@@ -17,5 +17,5 @@ Logs:
 - `logs/cron/hygiene.log`
 
 ## Notes
-- Decision ingest tick is placeholder scheduler hook; command parser is ready (`scripts/telegram_decision_parser.mjs` + `scripts/apply_telegram_decision.mjs`).
-- Next step: bind Telegram inbound events directly to decision apply flow.
+- Decision ingest draait nu via Telegram polling script: `scripts/decision_ingest_from_telegram.mjs` (aangeroepen door `scripts/decision_ingest_tick.sh`).
+- Vereiste env vars voor ingest: `TELEGRAM_BOT_TOKEN` en optioneel `TELEGRAM_ALLOWED_CHAT_IDS` (comma-separated).
