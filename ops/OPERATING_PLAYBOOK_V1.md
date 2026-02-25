@@ -94,6 +94,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 ## 7) Telegram Role (Operational Source of Truth)
 - Telegram is the operational overview (not long execution commentary).
 - Besluitvorming (GO/NO-GO) verloopt primair via privéchat Robin ↔ Zeus; lane-kanalen zijn info-first.
+- Automatische executieregel: bij expliciete "GO" op een gekozen oplossing start Zeus direct de build-dispatch (Intake → Planning → Codeurs) zonder extra handmatige trigger.
 - Standard flow (lane channels):
   - Research → Directie-beslischeck (JA/NEE) → Intake → Planning → Codeurs → QA-Release → Directie GO/NO-GO → Done
 - Planning agent updates status after Robin JA op oplossingsrichting.
