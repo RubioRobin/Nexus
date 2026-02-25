@@ -6,6 +6,11 @@ Purpose: vaste referentie voor productstijl (Revit add-ins + web) zodat consiste
 
 ## Primaire voorbeeldprojecten
 
+0) Nexus (RubioNexus)
+- Repo: https://github.com/RubioNexus/Nexus
+- Rol: hoofdreferentie voor huidige website + merkuitstraling.
+- Gebruik als referentie voor: tone of voice, visuele hiërarchie, CTA-stijl, typografie/spacing.
+
 1) VH_IFC_Viewer
 - Repo: https://github.com/RubioRobin/VH_IFC_Viewer
 - Rol: meest recente end-to-end setup (website + database + Revit add-in).
