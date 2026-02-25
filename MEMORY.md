@@ -254,3 +254,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Robin: Vercel env vars zetten (`GITHUB_TOKEN`, `GITHUB_OWNER`, `GITHUB_REPO`, optioneel workflow vars).
+
+## 2026-02-25 Auto-build v2 (GO Robin)
+1. **Facts**
+- Robin gaf GO op automatische build na intake.
+- Workflow uitgebreid van kickoff naar template generatie + build + artifacts.
+
+2. **Decisions**
+- Intake API triggert standaard `auto-build.yml` workflow dispatch.
+- Build levert `.dll` + `.addin` artifacts via GitHub Actions artifact upload.
+
+3. **Ideas**
+- Volgende stap: template vervangen door domeinspecifieke codegen per add-in type.
+
+4. **Artifacts**
+- `.github/workflows/auto-build.yml`
+- `scripts/auto_build_from_issue.sh`
+- `templates/revit-wpf-addon-template/*`
+- `projects/bedrijf-website/api/intake.js`
+
+5. **Open actions**
+- Owner Zeus/codeur: codegen intelligentie verbeteren zodat output functioneel dichter op intake zit.

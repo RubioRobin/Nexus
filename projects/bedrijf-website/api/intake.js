@@ -75,7 +75,7 @@ export default async function handler(req, res) {
     const issue = await issueResp.json();
 
     // Optional: trigger workflow dispatch for automation pipeline
-    const workflow = process.env.AUTO_BUILD_WORKFLOW_FILE; // e.g. auto-build.yml
+    const workflow = process.env.AUTO_BUILD_WORKFLOW_FILE || 'auto-build.yml';
     if (workflow) {
       await fetch(`https://api.github.com/repos/${owner}/${repo}/actions/workflows/${workflow}/dispatches`, {
         method: 'POST',

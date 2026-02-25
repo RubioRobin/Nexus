@@ -14,13 +14,22 @@ on:
         required: true
 
 jobs:
-  kickoff:
+  auto-build:
     runs-on: ubuntu-latest
     permissions:
       issues: write
       contents: read
+      actions: read
     steps:
-      - name: Add kickoff comment
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup .NET 8
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Kickoff comment
         uses: actions/github-script@v7
         with:
           script: |
@@ -28,16 +37,61 @@ jobs:
             const taskId = '${{ github.event.inputs.task_id }}';
             const traceId = '${{ github.event.inputs.trace_id }}';
             const body = [
-              `🚀 Auto-build pipeline gestart voor **${taskId}**`,
+              `🚀 Auto-build gestart voor **${taskId}**`,
               `Trace ID: ${traceId}`,
               '',
-              'Checklist:',
-              '- [ ] Intake triage bevestigd',
-              '- [ ] WPF/XAML huisstijl UI opgezet',
-              '- [ ] Ribbon-knop + icoon',
-              '- [ ] Build zonder errors/warnings',
-              '- [ ] .dll + .addin artifacts geleverd',
-              '- [ ] QA gate + Robin GO'
+              'Stappen:',
+              '- Intake gelezen',
+              '- WPF/XAML template gegenereerd',
+              '- Build + artifacts (.dll + .addin)'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body
+            });
+
+      - name: Build from intake issue
+        run: ./scripts/auto_build_from_issue.sh "${{ github.event.inputs.issue_number }}" "${{ github.event.inputs.task_id }}" "${{ github.event.inputs.trace_id }}"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: addin-${{ github.event.inputs.task_id }}
+          path: projects/intake-builds/${{ github.event.inputs.task_id }}/artifacts/*
+
+      - name: Success comment
+        if: success()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = Number('${{ github.event.inputs.issue_number }}');
+            const taskId = '${{ github.event.inputs.task_id }}';
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `✅ Auto-build geslaagd voor **${taskId}**`,
+              '',
+              `Download artifacts via workflow run: ${runUrl}`
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body
+            });
+
+      - name: Failure comment
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = Number('${{ github.event.inputs.issue_number }}');
+            const taskId = '${{ github.event.inputs.task_id }}';
+            const runUrl = `https://github.com/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`;
+            const body = [
+              `❌ Auto-build mislukt voor **${taskId}**`,
+              `Bekijk logs: ${runUrl}`
             ].join('\n');
             await github.rest.issues.createComment({
               owner: context.repo.owner,

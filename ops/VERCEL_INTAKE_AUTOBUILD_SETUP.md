@@ -11,7 +11,7 @@ Set in Vercel -> Project -> Settings -> Environment Variables:
 - `GITHUB_REPO` = `Nexus`
 
 Optional:
-- `AUTO_BUILD_WORKFLOW_FILE` = bv `auto-build.yml`
+- `AUTO_BUILD_WORKFLOW_FILE` = standaard `auto-build.yml`
 - `AUTO_BUILD_REF` = `master`
 
 ## 3) Wat gebeurt er na intake
