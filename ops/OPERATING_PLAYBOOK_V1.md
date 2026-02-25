@@ -1,7 +1,7 @@
 # OPERATING PLAYBOOK V1 — Robin x Zeus
 
 Status: Active (drafted from 100-vragen traject)
-Updated: 2026-02-23
+Updated: 2026-02-25
 Owner: Robin (final decisions) / Zeus (execution)
 
 ## 1) Strategic Direction
@@ -118,9 +118,41 @@ Owner: Robin (final decisions) / Zeus (execution)
   - where value/profit can be improved
 - HR/governance support agent should run this loop and provide recommendations.
 
+## 11) Discord Execution Blueprint (approved 2026-02-25)
+- Decision owner: Robin (approved Discord-only execution model).
+- System owner: Zeus (design, governance, and operational rollout).
+- Trello usage: discontinued for operations.
+
+### Server structure (minimum viable)
+- 00-directie
+  - #directie-go-nogo
+  - #directie-prioriteiten
+- 10-operations
+  - #intake
+  - #planning
+  - #build
+  - #qa
+  - #ready-release
+  - #done-log
+  - #blockers-critical
+- 20-reports
+  - #report-0800
+  - #report-1230
+  - #report-1930
+
+### Operating rules
+- Every task lives in exactly one thread with one explicit owner.
+- Mandatory status format per update: Done / Next / Blocker / GO-NO-GO need.
+- Stale rule: no update for 6h => escalate to #blockers-critical.
+- Completion gate remains: QA pass + Robin approval before Done.
+
+### Rollout order (max-3-step enforcement)
+1. Provision channel taxonomy + permissions.
+2. Pin templates + communication SOP in relevant channels.
+3. Run one full cycle (intake -> build -> QA -> release) and tune.
+
 ---
 
 ## Open Clarifications (next sync)
 1. Exact model fallback matrix for rate limits (per lane).
-2. Final Discord channel taxonomy mapping to all execution lanes (single-source setup).
-3. Definition of "testable candidate" per product type (Revit vs web).
+2. Definition of "testable candidate" per product type (Revit vs web).
