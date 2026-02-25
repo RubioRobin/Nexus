@@ -533,6 +533,143 @@ textarea {
   font-weight: 700;
 }
 
+/* Utility lists */
+.list {
+  list-style: none;
+  margin-top: 14px;
+  display: grid;
+  gap: 8px;
+}
+
+.list li {
+  background: var(--mist-subtle);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  border-radius: 10px;
+  padding: 10px 12px;
+  color: var(--forest-700);
+  font-weight: 600;
+  font-size: 0.94rem;
+}
+
+/* Diensten */
+.service-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.service-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  box-shadow: var(--shadow-sm);
+  padding: 32px;
+  position: relative;
+}
+
+.service-card h3 {
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  color: var(--text-muted);
+}
+
+.service-tag {
+  margin-top: 16px;
+  display: inline-flex;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  font-weight: 800;
+  padding: 7px 10px;
+  border-radius: 8px;
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--forest-900);
+}
+
+.value-band {
+  background: var(--white);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  box-shadow: var(--shadow-sm);
+  border-radius: var(--radius-md);
+  padding: 34px;
+}
+
+.value-band h2 {
+  margin-bottom: 18px;
+}
+
+.value-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.value-grid div {
+  background: var(--mist-subtle);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  border-radius: 10px;
+  padding: 12px;
+  display: grid;
+  gap: 6px;
+}
+
+.value-grid strong {
+  color: var(--forest-900);
+}
+
+.value-grid span {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* Werkwijze */
+.flow-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.flow-step {
+  background: var(--white);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 30px;
+}
+
+.flow-index {
+  width: 34px;
+  height: 34px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 12px;
+  font-weight: 800;
+  background: rgba(212, 175, 55, 0.2);
+  color: var(--forest-900);
+}
+
+.flow-step p {
+  color: var(--text-muted);
+}
+
+.process-strip {
+  background: var(--white);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-sm);
+  padding: 16px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 14px;
+  justify-content: center;
+  color: var(--forest-700);
+  font-weight: 600;
+}
+
 /* Cases */
 .case-hero {
   padding-bottom: 40px;
@@ -645,7 +782,10 @@ textarea {
     margin: 0 auto;
   }
 
-  .case-card {
+  .case-card,
+  .service-grid,
+  .flow-grid,
+  .value-grid {
     grid-template-columns: 1fr;
   }
 }
