@@ -494,3 +494,25 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Robin/QA: runtime-validatie in Revit 2025 en GO/NO-GO terugkoppeling in Directie.
 
+## 2026-02-25 Cron setup check (Robin)
+1. **Facts**
+- Robin vroeg om volledige croncheck en lijst met keep/add voor huidige setup.
+- User-level crontab was leeg tijdens controle.
+
+2. **Decisions**
+- Nieuwe standaard cronset gedefinieerd voor 08:00/12:30/19:30, stale-check, decision-ingest tick en hygiene checks.
+
+3. **Ideas**
+- Telegram inbound direct koppelen aan decision-ingest i.p.v. tick placeholder.
+
+4. **Artifacts**
+- `scripts/generate_1230_status.mjs`
+- `scripts/generate_1930_summary.mjs`
+- `scripts/stale_check_3h.mjs`
+- `scripts/telegram_hygiene_check.mjs`
+- `scripts/decision_ingest_tick.sh`
+- `ops/CRON_SETUP_V1.md`
+
+5. **Open actions**
+- Owner Zeus: bevestigen dat crontab entries actief zijn op runtime-user en eerste logs valideren.
+
