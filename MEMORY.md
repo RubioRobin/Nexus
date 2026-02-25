@@ -21,4 +21,7 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
   - Wanneer opnieuw gebruiken
 
 ## Reusable Patterns
-- _Nog te vullen._
+- **Probleem:** Stijl/UX raakt inconsistent tussen web en Revit add-ins bij snelle bouw.
+  - **Oplossing:** Gebruik vaste referentieset (VH_IFC_Viewer, Brood, VH_addin) + design baseline in `ops/DESIGN_REFERENCE.md`.
+  - **Waar staat het:** `ops/DESIGN_REFERENCE.md`
+  - **Wanneer opnieuw gebruiken:** Bij elke nieuwe add-in, website-update, of intake waar UI/branding onderdeel is.
