@@ -114,29 +114,32 @@ if(form){
     return {task,text};
   };
 
-  const renderPayload=(text)=>{
-    const payload=document.getElementById('intakePayload');
-    if(payload){
-      payload.hidden=false;
-      payload.textContent=text;
-    }
+  const showToast=(type,title,message)=>{
+    const host=document.getElementById('toastHost');
+    if(!host) return;
+    const el=document.createElement('div');
+    el.className=`toast ${type}`;
+    el.innerHTML=`<div class="toast-title">${title}</div><div class="toast-msg">${message}</div>`;
+    host.appendChild(el);
+    setTimeout(()=>{
+      el.style.animation='toast-out .2s ease forwards';
+      setTimeout(()=>el.remove(),220);
+    },4200);
   };
 
   form.addEventListener('submit',async e=>{
     e.preventDefault();
-    const feedback=document.getElementById('formFeedback');
     const fd=new FormData(form);
     const data=Object.fromEntries(fd.entries());
 
     if(!form.checkValidity() || (data.problem||'').trim().length<20){
-      feedback.textContent='Controleer je invoer: alle verplichte velden invullen en probleem minimaal 20 tekens.';
-      feedback.className='form-feedback err';
+      showToast('error','Controleer je aanvraag','Vul alle verplichte velden in en beschrijf je probleem in minimaal 20 tekens.');
       track('intake_form_error',{reason:'validation'});
       return;
     }
 
     const traceId=`NX-${Date.now().toString(36).toUpperCase()}`;
-    const {task,text}=buildTask(data,traceId);
+    const {task}=buildTask(data,traceId);
 
     const submissions=JSON.parse(localStorage.getItem('nexus_intakes')||'[]');
     submissions.push(task);
@@ -153,7 +156,7 @@ if(form){
       const out=await res.json().catch(()=>({}));
       if(res.ok){
         apiOk=true;
-        feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} wacht op GO (${out.assignedTo}). Telegram-notificatie is verstuurd.`;
+        showToast('success','Aanvraag ontvangen',`Je aanvraag is doorgestuurd naar intake. Referentie: ${task.taskId}.`);
       } else {
         apiError = out?.error || `HTTP ${res.status}`;
       }
@@ -165,27 +168,11 @@ if(form){
       const queue=JSON.parse(localStorage.getItem('nexus_build_queue')||'[]');
       queue.push(task);
       localStorage.setItem('nexus_build_queue',JSON.stringify(queue.slice(-100)));
-      feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} lokaal in wachtrij gezet (centrale API fout: ${apiError || 'onbekend'}).`;
+      showToast('error','Aanvraag lokaal opgeslagen',`Verbinding met intake service mislukt (${apiError || 'onbekend'}).`);
     }
 
-    feedback.className='form-feedback ok';
-    renderPayload(text);
-    navigator.clipboard?.writeText(text).catch(()=>{});
     track('intake_build_created',{traceId,taskId:task.taskId,effort:task.triage.effort,centralQueue:apiOk});
 
     form.reset();
   });
-
-  const btnExport=document.getElementById('btnBuildExport');
-  if(btnExport){
-    btnExport.addEventListener('click',()=>{
-      const fd=new FormData(form);
-      const data=Object.fromEntries(fd.entries());
-      const traceId=`NX-DRAFT-${Date.now().toString(36).toUpperCase()}`;
-      const {text}=buildTask(data,traceId);
-      renderPayload(text);
-      navigator.clipboard?.writeText(text).catch(()=>{});
-      track('intake_build_export',{traceId});
-    });
-  }
 }
