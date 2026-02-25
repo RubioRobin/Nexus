@@ -20,10 +20,35 @@ const readOffset = () => {
 };
 const writeOffset = (offset) => fs.writeFileSync(offPath, JSON.stringify({ offset, updatedAt: new Date().toISOString() }, null, 2));
 
-const parseDecision = (text='') => {
-  const m = text.trim().match(/^(GO|NO-GO|NOGO)\s+([A-Za-z0-9_-]+)$/i);
-  if (!m) return null;
-  return { action: m[1].toUpperCase() === 'GO' ? 'Go' : 'NoGo', id: m[2] };
+const parseDecision = (text = '') => {
+  const t = text.trim();
+  const withId = t.match(/^(GO|NO-GO|NOGO)\s+([A-Za-z0-9_-]+)$/i);
+  if (withId) return { action: withId[1].toUpperCase() === 'GO' ? 'Go' : 'NoGo', id: withId[2], raw: t };
+
+  const noId = t.match(/^(GO|NO-GO|NOGO)$/i);
+  if (noId) return { action: noId[1].toUpperCase() === 'GO' ? 'Go' : 'NoGo', id: null, raw: t };
+
+  return null;
+};
+
+const extractBuildId = (text = '') => {
+  const m = text.match(/\b(BUILD-[A-Za-z0-9_-]+)\b/i);
+  return m ? m[1] : null;
+};
+
+const resolveDecisionId = (msg, decision) => {
+  if (decision.id) return decision.id;
+
+  const fromReply = extractBuildId(msg?.reply_to_message?.text || '');
+  if (fromReply) return fromReply;
+
+  try {
+    const s = JSON.parse(fs.readFileSync(statePath, 'utf8'));
+    const last = [...(s.candidates || [])].reverse().find(c => c?.id);
+    if (last?.id) return last.id;
+  } catch {}
+
+  return null;
 };
 
 const applyDecision = (id, action) => {
@@ -91,28 +116,34 @@ for (const u of (data.result || [])) {
   const decision = parseDecision(msg.text || '');
   if (!decision) continue;
 
-  const result = applyDecision(decision.id, decision.action);
+  const resolvedId = resolveDecisionId(msg, decision);
+  if (!resolvedId) {
+    await send(chatId, '⚠️ Geen intake-id gevonden. Gebruik: GO <BUILD-ID> of reply op intakebericht met GO.');
+    continue;
+  }
+
+  const result = applyDecision(resolvedId, decision.action);
   if (!result.ok) {
-    await send(chatId, `⚠️ Besluit niet verwerkt voor ${decision.id}`);
+    await send(chatId, `⚠️ Besluit niet verwerkt voor ${resolvedId}`);
     continue;
   }
 
   if (decision.action === 'Go') {
-    const build = startBuild(decision.id);
+    const build = startBuild(resolvedId);
     if (build.ok) {
       const releaseLine = build.release?.ok && build.release?.url
         ? `\nGitHub release: ${build.release.url}`
         : `\nGitHub release: niet gelukt (${build.release?.error ? 'zie logs' : 'onbekend'})`;
-      const msgOut = `✅ GO verwerkt voor ${decision.id}. Build gestart/afgerond voor ${build.buildTaskId}.\nArtifacts: ${build.artifactDir}${releaseLine}`;
+      const msgOut = `✅ GO verwerkt voor ${resolvedId}. Build gestart/afgerond voor ${build.buildTaskId}.\nArtifacts: ${build.artifactDir}${releaseLine}`;
       await send(chatId, msgOut);
       if (releaseChatId && releaseChatId !== chatId) {
         await send(releaseChatId, `📦 Release update\n${msgOut}`);
       }
     } else {
-      await send(chatId, `⚠️ GO verwerkt voor ${decision.id}, maar build faalde.\n${build.detail || 'onbekende fout'}`);
+      await send(chatId, `⚠️ GO verwerkt voor ${resolvedId}, maar build faalde.\n${build.detail || 'onbekende fout'}`);
     }
   } else {
-    await send(chatId, `🛑 NO-GO verwerkt voor ${decision.id}.`);
+    await send(chatId, `🛑 NO-GO verwerkt voor ${resolvedId}.`);
   }
 }
 
