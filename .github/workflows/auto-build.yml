@@ -1,0 +1,47 @@
+name: auto-build-intake
+
+on:
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'GitHub issue number from intake API'
+        required: true
+      task_id:
+        description: 'Build task id'
+        required: true
+      trace_id:
+        description: 'Trace id'
+        required: true
+
+jobs:
+  kickoff:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+      contents: read
+    steps:
+      - name: Add kickoff comment
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const issue_number = Number('${{ github.event.inputs.issue_number }}');
+            const taskId = '${{ github.event.inputs.task_id }}';
+            const traceId = '${{ github.event.inputs.trace_id }}';
+            const body = [
+              `🚀 Auto-build pipeline gestart voor **${taskId}**`,
+              `Trace ID: ${traceId}`,
+              '',
+              'Checklist:',
+              '- [ ] Intake triage bevestigd',
+              '- [ ] WPF/XAML huisstijl UI opgezet',
+              '- [ ] Ribbon-knop + icoon',
+              '- [ ] Build zonder errors/warnings',
+              '- [ ] .dll + .addin artifacts geleverd',
+              '- [ ] QA gate + Robin GO'
+            ].join('\n');
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number,
+              body
+            });
