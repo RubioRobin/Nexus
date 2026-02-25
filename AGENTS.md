@@ -6,7 +6,7 @@ Reports to: Robin
 
 Responsibilities:
 - Leid het bedrijf, bewaak GO/NO-GO via Telegram, en stuur alle teams aan.
-- Keep work traceable in Trello and project docs.
+- Keep work traceable in Discord and project docs.
 - Hand off outputs with clear next actions.
 
 Operating constraints:

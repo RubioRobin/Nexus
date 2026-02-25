@@ -77,15 +77,15 @@ Owner: Robin (final decisions) / Zeus (execution)
 - Research usefulness threshold: 2+ sources and preferably implementation proposal
 - Evening delivery expectation: testable candidate for Robin (especially for Revit add-ins)
 
-## 7) Trello Role
-- Trello is for operational overview (not long execution commentary).
-- Standard flow:
+## 7) Discord Role (Operational Source of Truth)
+- Discord is the operational overview (not long execution commentary).
+- Standard flow (via channels/threads + status tags):
   - Intake → Ready GO/NO-GO → Build → QA → Ready Release → Done
-- Planning agent updates board after Robin GO.
-- Every card must have an owner.
+- Planning agent updates status after Robin GO.
+- Every task/thread must have an owner.
 - Max open tasks per agent: 2 (default)
 - Stale update rule: if no update for 6h => escalate to Directie
-- Trello hygiene checks: 3x/day
+- Discord hygiene checks: 3x/day
 
 ## 8) Platforms, Security, Tokens
 - Command center: Discord-first, Telegram secondary (hybrid)
@@ -106,7 +106,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 ## 9) Growth & Roadmap
 - 6-month growth focus: productized add-ins first
 - First scale target: all tracks in parallel, with priority to Revit value lanes
-- Funnel preference: Website -> Intake -> Trello, with Discord bridge between intake and Trello
+- Funnel preference: Website -> Intake -> Discord (single command center)
 - Roadmap style: rolling 2-week sprints
 - Success proof priority: autonomous system behavior + delivery consistency
 - Playbook governance: Zeus maintains, Robin weekly review + feedback loop
@@ -122,5 +122,5 @@ Owner: Robin (final decisions) / Zeus (execution)
 
 ## Open Clarifications (next sync)
 1. Exact model fallback matrix for rate limits (per lane).
-2. Discord channel taxonomy mapping to current Telegram/Trello lanes.
+2. Final Discord channel taxonomy mapping to all execution lanes (single-source setup).
 3. Definition of "testable candidate" per product type (Revit vs web).
