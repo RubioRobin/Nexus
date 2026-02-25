@@ -95,6 +95,15 @@ Zie ook:
 
 ---
 
-## 7) Afwijkingen
+## 7) Technische style library (v1)
+
+Standaard style assets staan in:
+- `ui/revit-style/BrandTokens.xaml`
+- `ui/revit-style/Controls.xaml`
+- `ui/revit-style/USAGE_SNIPPET.xaml`
+
+Gebruik deze als basis in elke nieuwe add-in en refactor stap-voor-stap bestaande add-ins hiernaartoe.
+
+## 8) Afwijkingen
 
 Afwijken van dit handboek mag alleen met expliciete Robin GO, inclusief reden in changelog/PR-notitie.

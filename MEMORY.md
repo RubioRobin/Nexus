@@ -92,3 +92,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: handboekregels in komende add-ins hard afdwingen via review-checklist.
+
+## 2026-02-25 14:12 Shared XAML style library
+1. **Facts**
+- Robin gaf GO om direct een gedeelde XAML style library op te zetten.
+- Eerste library-bestanden zijn aangemaakt met tokens + controls + usage snippet.
+
+2. **Decisions**
+- Nieuwe add-ins starten vanaf `ui/revit-style/*` als visuele baseline.
+- Bestaande add-ins worden gefaseerd naar deze library gemigreerd.
+
+3. **Ideas**
+- Volgende iteratie: icon style rules + DataGrid styles + status badge components toevoegen.
+
+4. **Artifacts**
+- `ui/revit-style/BrandTokens.xaml`
+- `ui/revit-style/Controls.xaml`
+- `ui/revit-style/USAGE_SNIPPET.xaml`
+- Update in `ops/ADDIN_HUISSTIJL_HANDBOEK_V1.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: library in eerstvolgende add-in concreet toepassen en visueel valideren met Robin.

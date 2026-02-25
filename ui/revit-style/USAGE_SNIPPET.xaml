@@ -1,0 +1,32 @@
+<!-- Merge in App.xaml or Window.Resources -->
+<ResourceDictionary>
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="ui/revit-style/BrandTokens.xaml" />
+    <ResourceDictionary Source="ui/revit-style/Controls.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+</ResourceDictionary>
+
+<!-- Example usage -->
+<Window Style="{StaticResource WindowBase}">
+  <Grid Margin="16">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto"/>
+      <RowDefinition Height="*"/>
+      <RowDefinition Height="Auto"/>
+    </Grid.RowDefinitions>
+
+    <TextBlock Text="Batch Sheet Renamer" Style="{StaticResource LabelBase}" FontSize="18" FontWeight="SemiBold"/>
+
+    <Border Grid.Row="1" Style="{StaticResource CardBorder}" Margin="0,12,0,12">
+      <StackPanel>
+        <TextBlock Text="Prefix" Style="{StaticResource LabelBase}" Margin="0,0,0,6"/>
+        <TextBox Style="{StaticResource InputBase}" />
+      </StackPanel>
+    </Border>
+
+    <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right">
+      <Button Style="{StaticResource SecondaryButton}" Content="Annuleren" Margin="0,0,8,0"/>
+      <Button Style="{StaticResource PrimaryButton}" Content="Uitvoeren"/>
+    </StackPanel>
+  </Grid>
+</Window>
