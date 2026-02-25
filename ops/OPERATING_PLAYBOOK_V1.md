@@ -151,6 +151,17 @@ Owner: Robin (final decisions) / Zeus (execution)
 - 19:30 Samenvatting: afgerond, openstaand, artifacts, plan morgen.
 - Elke 30m stale-check op 3h grens met escalatie naar Blockers-Critical.
 
+### Token-zuinig communicatieprotocol (verplicht)
+- Schrijf in simpel Nederlands (B1), korte zinnen, geen jargon tenzij nodig.
+- Gebruik altijd dit format: Done / Next / Blocker / GO-NO-GO nodig.
+- Detail alleen op verzoek van Robin of Zeus.
+- Lengterichtlijn per update:
+  - Research: max 180 woorden
+  - Intake/Planning/Codeurs/QA: max 120 woorden
+  - Directie: max 180 tekens per kernpunt (duidelijk en simpel)
+  - Blockers-Critical: max 90 woorden
+- Vermijd herhaling van context; alleen nieuwe info en beslispunt.
+
 ---
 
 ## Open Clarifications (next sync)
