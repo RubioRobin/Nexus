@@ -175,51 +175,25 @@ nav a.active {
 
 .hero-grid {
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
-  gap: 34px;
-  align-items: center;
+  grid-template-columns: 1fr;
+  gap: 20px;
+  align-items: start;
 }
 
 .hero-full {
   min-height: calc(100vh - var(--header-height));
-  padding-top: calc(var(--header-height) + 36px);
+  padding-top: calc(var(--header-height) + 28px);
   padding-bottom: 64px;
   display: flex;
   align-items: flex-start;
 }
 
 .hero-main {
-  max-width: 760px;
+  max-width: 100%;
 }
 
-.hero-stage {
-  background: linear-gradient(150deg, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0.75));
-  border: 1px solid rgba(27, 67, 50, 0.08);
-  border-radius: var(--radius-lg);
-  padding: 26px;
-  box-shadow: var(--shadow-md);
-  display: grid;
-  gap: 14px;
-}
-
-.stage-metric {
-  background: var(--white);
-  border: 1px solid rgba(27, 67, 50, 0.08);
-  border-radius: 12px;
-  padding: 14px;
-  display: grid;
-  gap: 4px;
-}
-
-.stage-metric strong {
-  color: var(--forest-900);
-  font-family: 'Outfit', sans-serif;
-  font-size: 1.35rem;
-}
-
-.stage-metric span {
-  color: var(--text-muted);
-  font-size: 0.95rem;
+.hero-main h1 {
+  max-width: 100%;
 }
 
 .badge {
