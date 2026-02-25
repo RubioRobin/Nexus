@@ -43,12 +43,15 @@ Na GO volledig automatisch:
 - Website intake -> Telegram intakebericht.
 - Status: `AwaitingDecision`.
 
-## Fase B2: Besluit
-- Robin GO/NO-GO op intake-task.
-- Bij GO automatische bouwpipeline starten.
+## Fase B2: Besluit (Telegram-only)
+- Robin geeft GO/NO-GO in Telegram op intake-task.
+- `GO <id>` betekent direct start van uitvoerings-aansturing door Zeus.
+- Geen GitHub-gate of handmatige labelstap voor buildstart.
 
-## Fase B3: Auto Delivery
-Zelfde technische flow als pipeline A, maar met klantspecifieke requirements.
+## Fase B3: Auto Delivery (Zeus-orchestrated)
+- Zeus stuurt agents direct aan voor spec -> build -> QA -> package.
+- Output blijft verplicht: `.dll` + `.addin` + test/opleverstatus in Telegram.
+- GitHub mag alleen als code/artifact-opslag dienen, niet als beslis- of startmechanisme.
 
 ---
 

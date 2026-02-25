@@ -597,3 +597,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus: bevestigen dat cronregels voor 08:05/12:35/19:35 actief staan.
 
+## 2026-02-25 21:12 Telegram GO is leidend (Robin)
+1. **Facts**
+- Robin bevestigde expliciet dat buildstart niet via GitHub mag lopen.
+- Gewenst gedrag: GO in Telegram -> Zeus start direct aansturing van agents.
+- Robin vroeg om de net uitgevoerde test-intake op te ruimen voor een schone lijn.
+
+2. **Decisions**
+- Telegram GO/NO-GO is het enige start/stop-besluitmechanisme voor intake-builds.
+- GitHub mag alleen nog dienen als code/artifact-opslag, niet als beslis- of triggerlaag.
+- Intake state voor nieuwe tests blijft schoon (geen pending candidates in `ops/state/pipeline_state.json`).
+
+3. **Ideas**
+- Volgende stap: Telegram decision-ingest direct laten doorzetten naar build orchestration job zonder tussenlagen.
+
+4. **Artifacts**
+- `ops/REVIT_ADDIN_PIPELINES_V1.md` (Pipeline B2/B3 aangescherpt op Telegram-only)
+- `ops/state/pipeline_state.json`
+
+5. **Open actions**
+- Owner Zeus/codeur: directe Telegram GO -> build-orchestratie koppeling afronden en bevestigen met test-run.
+
