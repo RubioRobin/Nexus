@@ -201,6 +201,11 @@ nav a.active {
   line-height: 1.05;
 }
 
+.hero-accent {
+  color: var(--accent);
+  white-space: nowrap;
+}
+
 .hero-lead {
   max-width: 760px;
   font-size: 1.26rem;
@@ -972,6 +977,10 @@ textarea {
 
   .actions {
     flex-wrap: wrap;
+  }
+
+  .hero-accent {
+    white-space: normal;
   }
 }
 
