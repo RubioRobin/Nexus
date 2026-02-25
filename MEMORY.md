@@ -561,3 +561,21 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Robin/Zeus: Vercel env `ALLOWED_ORIGINS` en Telegram ingest vars valideren in productie.
 
+## 2026-02-25 Memory onderhoudsritme
+1. **Facts**
+- Robin vroeg om structureel memory up-to-date te houden.
+
+2. **Decisions**
+- Memory checkpoint routine toegevoegd op vaste dagmomenten.
+- Checkpoints loggen naar cron log voor controle.
+
+3. **Ideas**
+- Later: auto-suggest memory diffs vanuit commit metadata.
+
+4. **Artifacts**
+- `scripts/memory_checkpoint.sh`
+- `ops/MEMORY_MAINTENANCE_V1.md`
+
+5. **Open actions**
+- Owner Zeus: bevestigen dat cronregels voor 08:05/12:35/19:35 actief staan.
+
