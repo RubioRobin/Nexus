@@ -531,6 +531,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Robin/QA: template invullen na runtime test en directieadvies plaatsen.
 
+## 2026-02-25 GO TEST-001 (Robin)
+1. **Facts**
+- Robin gaf expliciet GO met test-ID `TEST-001`.
+- Test-ID is als aparte intake/test-run vastgelegd onder inkomende add-ins.
+
+2. **Decisions**
+- `TEST-001` volgt de QA runtime flow voor Batch Sheet Renamer v1.
+
+3. **Ideas**
+- Test-ID conventie hergebruiken voor regressie- en acceptatietests per release.
+
+4. **Artifacts**
+- `addins/ingekomen-addins/2026/TEST-001/intake.md`
+- `addins/ingekomen-addins/2026/TEST-001/status.md`
+
+5. **Open actions**
+- Owner Robin/QA: TEST-001 uitvoeren en resultaat loggen met QA template.
+
 ## 2026-02-25 Cron setup check (Robin)
 1. **Facts**
 - Robin vroeg om volledige croncheck en lijst met keep/add voor huidige setup.
