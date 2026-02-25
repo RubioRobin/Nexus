@@ -516,3 +516,20 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus: bevestigen dat crontab entries actief zijn op runtime-user en eerste logs valideren.
 
+## 2026-02-25 Agent roster versimpeling (Robin)
+1. **Facts**
+- Robin vroeg of alle agents nog van toepassing zijn en wilde minder rommelige bezetting.
+
+2. **Decisions**
+- Kernbezetting vastgezet op 6 actieve agents: Zeus, Athena, Hermes, Chronos, Hephaistos, Themis.
+- Overige agents expliciet op standby met activatieregels.
+
+3. **Ideas**
+- Wekelijkse roster-check gebruiken om kern klein en effectief te houden.
+
+4. **Artifacts**
+- `ops/AGENT_ROSTER_STATUS.md`
+
+5. **Open actions**
+- Owner Zeus: bij volgende weekly check evalueren of extra specialist tijdelijk actief moet worden.
+
