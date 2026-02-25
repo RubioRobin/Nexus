@@ -73,22 +73,24 @@ Owner: Robin (final decisions) / Zeus (execution)
   - testable product yes/no
   - token health
 - Done criteria (task): QA pass + Robin approval
+- Release artifact-eis (Revit add-ins): lever altijd zowel `.dll` als `.addin` bestand aan Robin.
+- Build kwaliteitseis: build zonder errors of warnings vóór QA handoff.
 - QA policy: strict by default, but with controlled MVP path to avoid paralysis
 - Research usefulness threshold: 2+ sources and preferably implementation proposal
 - Evening delivery expectation: testable candidate for Robin (especially for Revit add-ins)
 
-## 7) Discord Role (Operational Source of Truth)
-- Discord is the operational overview (not long execution commentary).
-- Standard flow (via channels/threads + status tags):
-  - Intake → Ready GO/NO-GO → Build → QA → Ready Release → Done
-- Planning agent updates status after Robin GO.
-- Every task/thread must have an owner.
+## 7) Telegram Role (Operational Source of Truth)
+- Telegram is the operational overview (not long execution commentary).
+- Standard flow (lane channels):
+  - Research → Directie-beslischeck (JA/NEE) → Intake → Planning → Codeurs → QA-Release → Directie GO/NO-GO → Done
+- Planning agent updates status after Robin JA op oplossingsrichting.
+- Every task must have an owner.
 - Max open tasks per agent: 2 (default)
-- Stale update rule: if no update for 6h => escalate to Directie
-- Discord hygiene checks: 3x/day
+- Stale update rule: if no update for 3h => escalate to Blockers-Critical
+- Telegram hygiene checks: 3x/day
 
 ## 8) Platforms, Security, Tokens
-- Command center: Discord-first, Telegram secondary (hybrid)
+- Command center: Telegram-first (directie + lanes)
 - Secrets: password manager + host injection
 - Token policy:
   - warning below 40%
@@ -106,7 +108,7 @@ Owner: Robin (final decisions) / Zeus (execution)
 ## 9) Growth & Roadmap
 - 6-month growth focus: productized add-ins first
 - First scale target: all tracks in parallel, with priority to Revit value lanes
-- Funnel preference: Website -> Intake -> Discord (single command center)
+- Funnel preference: Website -> Intake -> Telegram (single command center)
 - Roadmap style: rolling 2-week sprints
 - Success proof priority: autonomous system behavior + delivery consistency
 - Playbook governance: Zeus maintains, Robin weekly review + feedback loop
@@ -118,38 +120,34 @@ Owner: Robin (final decisions) / Zeus (execution)
   - where value/profit can be improved
 - HR/governance support agent should run this loop and provide recommendations.
 
-## 11) Discord Execution Blueprint (approved 2026-02-25)
-- Decision owner: Robin (approved Discord-only execution model).
+## 11) Telegram Execution Blueprint (approved 2026-02-25)
+- Decision owner: Robin (approved Telegram-first execution model).
 - System owner: Zeus (design, governance, and operational rollout).
 - Trello usage: discontinued for operations.
 
-### Server structure (minimum viable)
-- 00-directie
-  - #directie-go-nogo
-  - #directie-prioriteiten
-- 10-operations
-  - #intake
-  - #planning
-  - #build
-  - #qa
-  - #ready-release
-  - #done-log
-  - #blockers-critical
-- 20-reports
-  - #report-0800
-  - #report-1230
-  - #report-1930
+### Kanaalset (operationeel)
+- Zeus (backchannel met Robin)
+- Directie
+- Intake-Sales
+- Research-Innovatie
+- Planning
+- Codeurs
+- QA-Release
+- Blockers-Critical
 
 ### Operating rules
-- Every task lives in exactly one thread with one explicit owner.
-- Mandatory status format per update: Done / Next / Blocker / GO-NO-GO need.
-- Stale rule: no update for 6h => escalate to #blockers-critical.
-- Completion gate remains: QA pass + Robin approval before Done.
+- Elke taak heeft exact 1 owner.
+- Research levert minimaal 3 probleemopties in de 08:00 brief; Robin kiest JA/NEE wat wordt opgepakt.
+- Verplichte updatevelden per lane: Done / Next / Blocker / GO-NO-GO need.
+- Stale rule: geen update >3h => escalatie naar Blockers-Critical.
+- Completion gate: QA pass + Robin approval vóór Done.
+- Revit release gate: `.dll` + `.addin` aanleveren, build zonder errors/warnings.
 
-### Rollout order (max-3-step enforcement)
-1. Provision channel taxonomy + permissions.
-2. Pin templates + communication SOP in relevant channels.
-3. Run one full cycle (intake -> build -> QA -> release) and tune.
+### Automatisering
+- 08:00 Directie brief: 3 gevarieerde Revit-problemen + JA/NEE beslisvraag.
+- 12:30 Status: voortgang, blockers, ETA, GO/NO-GO behoefte.
+- 19:30 Samenvatting: afgerond, openstaand, artifacts, plan morgen.
+- Elke 30m stale-check op 3h grens met escalatie naar Blockers-Critical.
 
 ---
 
