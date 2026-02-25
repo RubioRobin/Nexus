@@ -151,3 +151,25 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Robin/Zeus: Windows build + Revit runtime test bevestigen op testmachine.
+
+## 2026-02-25 Website iteratie 2 (GO Robin)
+1. **Facts**
+- Robin gaf GO om website direct door te pakken.
+- Website is verder aangescherpt op conversie + cases met KPI-taal.
+- Intakeflow uitgebreid met Trello-kaarttekst generator en trace ID.
+
+2. **Decisions**
+- Intake blijft in v1 frontend-first (validatie + lokale opslag + tracking).
+- v2 voegt backend endpoint toe voor directe Trello API write.
+
+3. **Ideas**
+- Cases verrijken met echte klantlogo’s + geverifieerde KPI’s.
+
+4. **Artifacts**
+- `projects/bedrijf-website/*.html` updates
+- `projects/bedrijf-website/assets/script.js`
+- `projects/bedrijf-website/assets/styles.css`
+- `ops/WEB_INTAKE_PLATFORM_IMPLEMENTATION_V1.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: v2 backend handoff naar Trello implementeren na Robin GO.

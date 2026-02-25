@@ -51,6 +51,7 @@ input:focus,select:focus,textarea:focus{outline:2px solid rgba(31,77,58,.25);bor
 .form-feedback{margin:2px 0 0;font-weight:600}
 .form-feedback.ok{color:var(--ok)}
 .form-feedback.err{color:var(--danger)}
+.trello-payload{margin:8px 0 0;padding:12px;border-radius:10px;border:1px solid #d7e2da;background:#fff;white-space:pre-wrap;font-size:.9rem;line-height:1.4}
 @media (max-width:700px){
   .hero{padding:70px 0 52px}
   nav{gap:8px}
