@@ -1,0 +1,15 @@
+<!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Feedback — NEXUS</title><link rel="stylesheet" href="assets/styles.css"></head><body>
+<header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">NEXUS</a><nav><a href="index.html">Home</a><a href="diensten.html">Oplossingen</a><a href="cases.html">Cases</a><a href="over-ons.html">Werkwijze</a><a href="contact.html">Start intake</a><a class="active" href="feedback.html">Feedback</a></nav></div></header>
+<main><section><div class="container"><h1 class="section-title reveal">Feedback</h1><p class="section-sub reveal">Meld bugs, verbeterpunten of wensen. Zo verbeteren we sneller.</p><div class="card reveal"><form id="feedbackForm" class="intake-form" novalidate>
+<label>Naam<input type="text" name="name" required /></label>
+<label>E-mail<input type="email" name="email" required /></label>
+<div class="grid two">
+<label>Type<select name="type" required><option value="">Kies</option><option>bug</option><option>feature</option><option>usability</option></select></label>
+<label>Prioriteit<select name="priority" required><option value="">Kies</option><option>laag</option><option>middel</option><option>hoog</option></select></label>
+</div>
+<label>Versie/add-in ID<input type="text" name="version" placeholder="Bijv. BUILD-NX-... v1.0.0" /></label>
+<label>Beschrijving<textarea name="description" required minlength="20"></textarea></label>
+<div class="actions"><button class="btn primary" type="submit">Verstuur feedback</button></div>
+</form></div></div></section></main>
+<div id="toastHost" class="toast-host" aria-live="polite" aria-atomic="true"></div>
+<footer class="footer"><div class="container">NEXUS</div></footer><script src="assets/script.js"></script></body></html>

@@ -1,3 +1,22 @@
+function qualify(task) {
+  const missing = [];
+  if (!task.customer?.name) missing.push('contact naam');
+  if (!task.customer?.company) missing.push('bedrijf');
+  if (!task.intake?.problem || task.intake.problem.trim().length < 20) missing.push('duidelijke probleemomschrijving');
+  if (!task.intake?.revitVersion) missing.push('Revit versie');
+
+  const impact = Number(task.impactScore || 65);
+  const confidence = Number(task.confidenceScore || 60);
+  const risk = (task?.triage?.risk || '').toLowerCase().includes('hoog') ? 'high' : 'medium';
+
+  const status = missing.length ? 'NeedsInfo' : 'Qualified';
+  const scope = task?.triage?.effort?.startsWith('L') ? 'L' : task?.triage?.effort?.startsWith('M') ? 'M' : 'S';
+  const route = 'ClientProject'; // klant altijd eerst
+  const sla = scope === 'S' ? '1-2 werkdagen' : scope === 'M' ? '3-5 werkdagen' : '1-2 weken';
+
+  return { status, missing, impact, confidence, risk, scope, route, sla };
+}
+
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return res.status(405).json({ ok: false, error: 'Method not allowed' });
@@ -9,6 +28,8 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: 'Invalid payload' });
     }
 
+    const q = qualify(task);
+
     const tgToken = process.env.TELEGRAM_BOT_TOKEN;
     const tgChatId = process.env.TELEGRAM_CHAT_ID;
     const tgZeusChatId = process.env.TELEGRAM_ZEUS_CHAT_ID || tgChatId;
@@ -19,7 +40,7 @@ export default async function handler(req, res) {
 
     const addinType = task?.intake?.addinType || 'Algemeen';
     const text = [
-      `🆕 Nieuwe intake (awaiting GO)`,
+      `🆕 Nieuwe intake (${q.status})`,
       `Athena research: requested`,
       `Task: ${task.taskId}`,
       `Trace: ${task.traceId}`,
@@ -27,14 +48,16 @@ export default async function handler(req, res) {
       `Mail: ${task.customer?.email || '-'}`,
       `Type: ${addinType}`,
       `Revit: ${task.intake?.revitVersion || '-'}`,
-      `Urgentie: ${task.intake?.urgency || '-'}`,
-      `Budget: ${task.intake?.budget || '-'}`,
+      `Route: ${q.route}`,
+      `Scope: ${q.scope} | SLA-band: ${q.sla}`,
+      `Risk: ${q.risk}`,
       '',
       `Probleem: ${task.intake?.problem || '-'}`,
       `Uitkomst: ${task.intake?.outcome || '-'}`,
       `Bestanden: ${task.intake?.filesUrl || '-'}`,
+      ...(q.missing.length ? ['', `Missing info: ${q.missing.join(', ')}`] : []),
       '',
-      `GO/NO-GO nodig van Robin vóór buildstart.`
+      `Robin GO/NO-GO nodig vóór buildstart.`
     ].join('\n');
 
     const send = async (chatId) => fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
@@ -56,6 +79,7 @@ export default async function handler(req, res) {
     return res.status(200).json({
       ok: true,
       queueStatus: 'awaiting_go',
+      qualification: q,
       assignedTo: 'intake-agent->zeus->robin',
       taskId: task.taskId
     });

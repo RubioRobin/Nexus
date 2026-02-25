@@ -385,6 +385,30 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus/codeur: automate Athena research ingest + schedule 08:00/12:30/19:30 report jobs.
 
+## 2026-02-25 Website intake pipeline verfijning (Robin)
+1. **Facts**
+- Robin bevestigde website-intake als aparte factory-track met kwalificatie en gates.
+- Robin wil altijd zelf GO/NO-GO geven op website-intakes.
+- Robin wil feedback-form nu direct actief.
+
+2. **Decisions**
+- ClientProject-first routing voor website-intakes.
+- Kwalificatie defaults met `NeedsInfo`/`Qualified` + scope/SLA-band.
+- Feedback endpoint + pagina toegevoegd (`/feedback`) met Telegram-forward.
+
+3. **Ideas**
+- Latere fase: Supabase als multi-tenant opslag voor attachments/NDA data.
+
+4. **Artifacts**
+- `projects/bedrijf-website/api/intake.js`
+- `projects/bedrijf-website/api/feedback.js`
+- `projects/bedrijf-website/feedback.html`
+- `projects/bedrijf-website/assets/script.js`
+- `ops/WEBSITE_INTAKE_FACTORY_V1.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: auth/rate-limit + secure attachment strategy toevoegen (voor supabase fase).
+
 ## 2026-02-25 Duidelijke add-in mappenstructuur (Robin)
 1. **Facts**
 - Robin vroeg om een duidelijke structuur voor inkomende aanvragen vanuit website/intake.
