@@ -495,6 +495,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Robin/QA: runtime-validatie in Revit 2025 en GO/NO-GO terugkoppeling in Directie.
 
+## 2026-02-25 GO Robin: QA runtime gestart
+1. **Facts**
+- Robin gaf GO om direct door te pakken.
+- QA runtime checklist voor Revit 2025 is toegevoegd voor Batch Sheet Renamer.
+
+2. **Decisions**
+- Intake `BUILD-NX-MM29UCNL` staat nu op status: QA runtime test gestart.
+
+3. **Ideas**
+- Na QA: standaard bewijsset (3 screenshots) verplicht maken voor elke add-in handoff.
+
+4. **Artifacts**
+- `addins/eigen-addins/revit-batch-sheet-renamer-v1/QA_CHECKLIST_REVT2025.md`
+- `addins/ingekomen-addins/2026/BUILD-NX-MM29UCNL/status.md`
+
+5. **Open actions**
+- Owner Robin/QA: checklist uitvoeren en GO/NO-GO terugmelden.
+
 ## 2026-02-25 Cron setup check (Robin)
 1. **Facts**
 - Robin vroeg om volledige croncheck en lijst met keep/add voor huidige setup.
