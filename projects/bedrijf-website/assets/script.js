@@ -18,6 +18,8 @@ document.querySelectorAll('.track-cta').forEach(btn=>{
   btn.addEventListener('click',()=>track('cta_click',{id:btn.dataset.cta||'unknown'}));
 });
 
+const INTAKE_API_BASE=(window.NEXUS_INTAKE_API_BASE||'http://localhost:8787');
+
 const form=document.getElementById('intakeForm');
 if(form){
   track('intake_form_view');
@@ -120,7 +122,7 @@ if(form){
     }
   };
 
-  form.addEventListener('submit',e=>{
+  form.addEventListener('submit',async e=>{
     e.preventDefault();
     const feedback=document.getElementById('formFeedback');
     const fd=new FormData(form);
@@ -140,15 +142,33 @@ if(form){
     submissions.push(task);
     localStorage.setItem('nexus_intakes',JSON.stringify(submissions.slice(-100)));
 
-    const queue=JSON.parse(localStorage.getItem('nexus_build_queue')||'[]');
-    queue.push(task);
-    localStorage.setItem('nexus_build_queue',JSON.stringify(queue.slice(-100)));
+    let apiOk=false;
+    try{
+      const res=await fetch(`${INTAKE_API_BASE}/api/intake`,{
+        method:'POST',
+        headers:{'Content-Type':'application/json'},
+        body:JSON.stringify(task)
+      });
+      if(res.ok){
+        const out=await res.json();
+        apiOk=true;
+        feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} staat in centrale queue (${out.assignedTo}).`;
+      }
+    }catch(_err){
+      // fallback below
+    }
 
-    feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} staat klaar voor codeur.`;
+    if(!apiOk){
+      const queue=JSON.parse(localStorage.getItem('nexus_build_queue')||'[]');
+      queue.push(task);
+      localStorage.setItem('nexus_build_queue',JSON.stringify(queue.slice(-100)));
+      feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} lokaal in wachtrij gezet (backend niet bereikbaar).`;
+    }
+
     feedback.className='form-feedback ok';
     renderPayload(text);
     navigator.clipboard?.writeText(text).catch(()=>{});
-    track('intake_build_created',{traceId,taskId:task.taskId,effort:task.triage.effort});
+    track('intake_build_created',{traceId,taskId:task.taskId,effort:task.triage.effort,centralQueue:apiOk});
 
     form.reset();
   });

@@ -211,3 +211,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Zeus/codeur: centrale backend queue + auto-assign implementeren na Robin GO.
+
+## 2026-02-25 Intake-to-build V3
+1. **Facts**
+- Robin gaf GO voor V3.
+- Centrale intake backend is toegevoegd met queue + auto-assign.
+
+2. **Decisions**
+- Intake stuurt direct naar centrale endpoint (`POST /api/intake`).
+- Fallback naar localStorage blijft actief als backend offline is.
+
+3. **Ideas**
+- Volgende stap: queue naar database + Telegram push bij nieuwe intake.
+
+4. **Artifacts**
+- `projects/bedrijf-website/backend/server.js`
+- `projects/bedrijf-website/backend/package.json`
+- `projects/bedrijf-website/assets/script.js`
+- `ops/WEB_INTAKE_PLATFORM_IMPLEMENTATION_V2.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: productie-hardening (auth + database + notif integratie).
