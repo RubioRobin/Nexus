@@ -9,99 +9,54 @@ export default async function handler(req, res) {
       return res.status(400).json({ ok: false, error: 'Invalid payload' });
     }
 
-    const owner = process.env.GITHUB_OWNER || 'RubioRobin';
-    const repo = process.env.GITHUB_REPO || 'Nexus';
-    const token = process.env.GITHUB_TOKEN;
+    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
+    const tgChatId = process.env.TELEGRAM_CHAT_ID;
+    const tgZeusChatId = process.env.TELEGRAM_ZEUS_CHAT_ID || tgChatId;
 
-    if (!token) {
-      return res.status(500).json({ ok: false, error: 'Missing GITHUB_TOKEN env var' });
+    if (!tgToken || !tgChatId) {
+      return res.status(500).json({ ok: false, error: 'Missing TELEGRAM_BOT_TOKEN or TELEGRAM_CHAT_ID' });
     }
 
     const addinType = task?.intake?.addinType || 'Algemeen';
-    const labels = ['intake', 'awaiting-go', 'revit-addon'];
-
-    const body = [
-      `# Build Task ${task.taskId}`,
-      `Trace ID: ${task.traceId}`,
+    const text = [
+      `🆕 Nieuwe intake (awaiting GO)`,
+      `Task: ${task.taskId}`,
+      `Trace: ${task.traceId}`,
+      `Klant: ${task.customer?.name || '-'} (${task.customer?.company || '-'})`,
+      `Mail: ${task.customer?.email || '-'}`,
+      `Type: ${addinType}`,
+      `Revit: ${task.intake?.revitVersion || '-'}`,
+      `Urgentie: ${task.intake?.urgency || '-'}`,
+      `Budget: ${task.intake?.budget || '-'}`,
       '',
-      '## Klant',
-      `- Naam: ${task.customer?.name || '-'}`,
-      `- Bedrijf: ${task.customer?.company || '-'}`,
-      `- E-mail: ${task.customer?.email || '-'}`,
+      `Probleem: ${task.intake?.problem || '-'}`,
+      `Uitkomst: ${task.intake?.outcome || '-'}`,
+      `Bestanden: ${task.intake?.filesUrl || '-'}`,
       '',
-      '## Intake',
-      `- Type add-in: ${addinType}`,
-      `- Revit versie: ${task.intake?.revitVersion || '-'}`,
-      `- Urgentie: ${task.intake?.urgency || '-'}`,
-      `- Budget: ${task.intake?.budget || '-'}`,
-      `- Bestanden: ${task.intake?.filesUrl || '-'}`,
-      '',
-      '## Probleem',
-      task.intake?.problem || '-',
-      '',
-      '## Gewenste uitkomst',
-      task.intake?.outcome || '-',
-      '',
-      '## Triage',
-      `- Effort: ${task.triage?.effort || '-'}`,
-      `- Risico: ${task.triage?.risk || '-'}`,
-      `- Prioriteit: ${task.triage?.priority || '-'}`,
-      '',
-      '## Acceptance criteria',
-      ...(task.acceptanceCriteria || []).map((x, i) => `${i + 1}. ${x}`),
-      '',
-      `Handoff: ${task.handoff || '-'}`
+      `GO/NO-GO nodig van Robin vóór buildstart.`
     ].join('\n');
 
-    const issueResp = await fetch(`https://api.github.com/repos/${owner}/${repo}/issues`, {
+    const send = async (chatId) => fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
       method: 'POST',
-      headers: {
-        Authorization: `Bearer ${token}`,
-        Accept: 'application/vnd.github+json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        title: `[AUTO BUILD] ${task.taskId} — ${addinType}`,
-        body,
-        labels
-      })
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ chat_id: chatId, text })
     });
 
-    if (!issueResp.ok) {
-      const txt = await issueResp.text();
-      return res.status(500).json({ ok: false, error: `GitHub issue create failed: ${txt}` });
+    const r1 = await send(tgChatId);
+    if (!r1.ok) {
+      const err = await r1.text();
+      return res.status(500).json({ ok: false, error: `Telegram send failed: ${err}` });
     }
 
-    const issue = await issueResp.json();
-
-    // Notify Robin on Telegram before any build starts
-    const tgToken = process.env.TELEGRAM_BOT_TOKEN;
-    const tgChatId = process.env.TELEGRAM_CHAT_ID;
-    if (tgToken && tgChatId) {
-      const text = [
-        `Nieuwe intake: ${task.taskId}`,
-        `Type: ${addinType}`,
-        `Urgentie: ${task.intake?.urgency || '-'}`,
-        `Issue: ${issue.html_url}`,
-        '',
-        `Reageer met GO/NO-GO.`,
-        `Bij GO: voeg label 'go-build' toe op issue #${issue.number}.`
-      ].join('\n');
-
-      await fetch(`https://api.telegram.org/bot${tgToken}/sendMessage`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ chat_id: tgChatId, text })
-      });
+    if (tgZeusChatId && tgZeusChatId !== tgChatId) {
+      await send(tgZeusChatId);
     }
 
     return res.status(200).json({
       ok: true,
       queueStatus: 'awaiting_go',
-      assignedTo: 'robin-go-gate',
-      taskId: task.taskId,
-      issueUrl: issue.html_url,
-      issueNumber: issue.number
+      assignedTo: 'intake-agent->zeus->robin',
+      taskId: task.taskId
     });
   } catch (err) {
     return res.status(500).json({ ok: false, error: err.message || 'Unhandled error' });

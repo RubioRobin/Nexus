@@ -153,7 +153,7 @@ if(form){
       const out=await res.json().catch(()=>({}));
       if(res.ok){
         apiOk=true;
-        feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} wacht op GO (${out.assignedTo}). Issue: #${out.issueNumber}`;
+        feedback.textContent=`Intake verwerkt. Build-opdracht ${task.taskId} wacht op GO (${out.assignedTo}). Telegram-notificatie is verstuurd.`;
       } else {
         apiError = out?.error || `HTTP ${res.status}`;
       }
