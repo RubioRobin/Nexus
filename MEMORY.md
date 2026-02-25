@@ -363,6 +363,28 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus/codeur: fase-implementatie starten (Athena research job + Telegram GO parser + centrale state store).
 
+## 2026-02-25 Implementatie start dual-track (na akkoord Robin)
+1. **Facts**
+- Robin gaf akkoord op dual-track setup.
+- Foundation voor state + command handling is aangemaakt.
+
+2. **Decisions**
+- Centrale state draait initieel file-based (`ops/state/pipeline_state.json`) om snel te starten.
+- GO/NO-GO parser gebruikt expliciete chat-commando’s (`GO <id>`, `NO-GO <id>`).
+
+3. **Ideas**
+- Volgende stap: parser direct koppelen aan inkomende Telegram berichten en build trigger.
+
+4. **Artifacts**
+- `ops/schemas/AddinCandidate.schema.json`
+- `ops/state/pipeline_state.json`
+- `scripts/pipeline_state_cli.mjs`
+- `scripts/telegram_decision_parser.mjs`
+- `scripts/generate_0800_brief.mjs`
+
+5. **Open actions**
+- Owner Zeus/codeur: automate Athena research ingest + schedule 08:00/12:30/19:30 report jobs.
+
 ## 2026-02-25 Duidelijke add-in mappenstructuur (Robin)
 1. **Facts**
 - Robin vroeg om een duidelijke structuur voor inkomende aanvragen vanuit website/intake.

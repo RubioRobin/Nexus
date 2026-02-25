@@ -1,0 +1,30 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AddinCandidate",
+  "type": "object",
+  "required": ["id", "track", "date", "problem", "impactScore", "confidenceScore", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "track": { "enum": ["internal", "client"] },
+    "date": { "type": "string" },
+    "problem": { "type": "string" },
+    "context": { "type": "string" },
+    "discipline": { "type": "string" },
+    "impactScore": { "type": "number" },
+    "confidenceScore": { "type": "number" },
+    "marketValue": { "enum": ["low", "medium", "high"] },
+    "solutionType": { "enum": ["revit_addin", "dynamo", "ai_workflow", "standalone"] },
+    "userStories": { "type": "array", "items": { "type": "string" } },
+    "functionalRequirements": { "type": "array", "items": { "type": "string" } },
+    "nonGoals": { "type": "array", "items": { "type": "string" } },
+    "risks": { "type": "array", "items": { "type": "string" } },
+    "techFeasibility": { "enum": ["low", "medium", "high"] },
+    "status": {
+      "enum": [
+        "Proposed", "Reviewed", "AwaitingDecision", "Go", "SpecReady", "InDevelopment",
+        "InQA", "ReadyForRelease", "Released", "Feedback", "Iterating", "NoGo", "Deferred"
+      ]
+    },
+    "owner": { "type": "string" }
+  }
+}

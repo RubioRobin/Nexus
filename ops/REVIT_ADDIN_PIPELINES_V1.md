@@ -153,3 +153,10 @@ Anders: altijd Robin GO nodig.
 3. Centrale state store voor beide pipelines (zonder GitHub-afhankelijkheid).
 4. Auto build trigger direct vanuit Telegram GO.
 5. QA + packaging automation afronden.
+
+## Implementatie gestart (v1 foundation)
+- Schema: `ops/schemas/AddinCandidate.schema.json`
+- Centrale state: `ops/state/pipeline_state.json`
+- CLI state beheer: `scripts/pipeline_state_cli.mjs`
+- Telegram command parser: `scripts/telegram_decision_parser.mjs`
+- 08:00 brief generator: `scripts/generate_0800_brief.mjs`
