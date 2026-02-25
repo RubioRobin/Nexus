@@ -32,15 +32,20 @@ jobs:
             echo "issue_number=${{ github.event.inputs.issue_number }}" >> "$GITHUB_OUTPUT"
             echo "task_id=${{ github.event.inputs.task_id }}" >> "$GITHUB_OUTPUT"
             echo "trace_id=${{ github.event.inputs.trace_id }}" >> "$GITHUB_OUTPUT"
+            echo "company=Tool" >> "$GITHUB_OUTPUT"
           else
             ISSUE_NUMBER="${{ github.event.issue.number }}"
             TITLE="${{ github.event.issue.title }}"
+            BODY="${{ github.event.issue.body }}"
             TASK_ID=$(echo "$TITLE" | sed -E 's/^\[AUTO BUILD\] ([^ ]+).*/\1/;t;d')
             if [[ -z "$TASK_ID" ]]; then TASK_ID="AUTO-ISSUE-${ISSUE_NUMBER}"; fi
             TRACE_ID="NX-ISSUE-${ISSUE_NUMBER}"
+            COMPANY=$(echo "$BODY" | sed -n 's/^- Bedrijf: //p' | head -n1)
+            if [[ -z "$COMPANY" || "$COMPANY" == "-" ]]; then COMPANY="Tool"; fi
             echo "issue_number=${ISSUE_NUMBER}" >> "$GITHUB_OUTPUT"
             echo "task_id=${TASK_ID}" >> "$GITHUB_OUTPUT"
             echo "trace_id=${TRACE_ID}" >> "$GITHUB_OUTPUT"
+            echo "company=${COMPANY}" >> "$GITHUB_OUTPUT"
           fi
 
       - name: Checkout
@@ -75,7 +80,7 @@ jobs:
             });
 
       - name: Build from intake issue
-        run: ./scripts/auto_build_from_issue.sh "${{ steps.vars.outputs.issue_number }}" "${{ steps.vars.outputs.task_id }}" "${{ steps.vars.outputs.trace_id }}"
+        run: ./scripts/auto_build_from_issue.sh "${{ steps.vars.outputs.issue_number }}" "${{ steps.vars.outputs.task_id }}" "${{ steps.vars.outputs.trace_id }}" "${{ steps.vars.outputs.company }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4

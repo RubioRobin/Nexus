@@ -296,3 +296,27 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Robin: in Vercel `TELEGRAM_BOT_TOKEN` en `TELEGRAM_CHAT_ID` zetten voor pre-build notificaties.
+
+## 2026-02-25 Intake automatisering Robin (3 fases)
+1. **Facts**
+- Robin wil dat Athena bij intake onderzoek/context toevoegt.
+- Robin wil house-style verplicht + eigen ribbon-knop met bedrijfsnaam (fallback Tool).
+- Robin wil alle 3 fases tegelijk oppakken (intake -> GO gate -> build).
+
+2. **Decisions**
+- Intake-bericht markeert nu expliciet `Athena research: requested`.
+- Build template maakt ribbon-knop via `IExternalApplication` met bedrijfsnaam/fallback.
+- GO/NO-GO gate blijft leidend vóór buildstart.
+
+3. **Ideas**
+- GO/NO-GO straks volledig via Telegram callback i.p.v. handmatig labels.
+
+4. **Artifacts**
+- `templates/revit-wpf-addon-template/App.cs`
+- `scripts/auto_build_from_issue.sh`
+- `.github/workflows/auto-build.yml`
+- `projects/bedrijf-website/api/intake.js`
+- `ops/INTAKE_AUTOMATION_PHASES_V1.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: Telegram callback GO->build trigger implementeren zonder GitHub tussenschakel.

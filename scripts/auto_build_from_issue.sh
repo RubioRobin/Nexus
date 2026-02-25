@@ -4,9 +4,12 @@ set -euo pipefail
 ISSUE_NUMBER="${1:-}"
 TASK_ID="${2:-AUTO-TASK}"
 TRACE_ID="${3:-NA}"
+COMPANY_NAME_RAW="${4:-Tool}"
+COMPANY_NAME="$(echo "$COMPANY_NAME_RAW" | sed -E 's/[^[:alnum:] _-]//g' | sed -E 's/^\s+|\s+$//g')"
+if [[ -z "$COMPANY_NAME" ]]; then COMPANY_NAME="Tool"; fi
 
 if [[ -z "$ISSUE_NUMBER" ]]; then
-  echo "Usage: auto_build_from_issue.sh <issue_number> <task_id> <trace_id>"
+  echo "Usage: auto_build_from_issue.sh <issue_number> <task_id> <trace_id> [company_name]"
   exit 1
 fi
 
@@ -19,13 +22,18 @@ TEMPLATE="$ROOT/templates/revit-wpf-addon-template"
 mkdir -p "$SRC_DIR" "$ART_DIR"
 cp -f "$TEMPLATE"/* "$SRC_DIR"/
 
-# Embed task details in generated window text
+# Embed task details + company-based ribbon naming
 python3 - <<PY
 from pathlib import Path
 p=Path("$SRC_DIR/MainWindow.xaml.cs")
 s=p.read_text()
-s=s.replace("Deze add-in is automatisch opgebouwd vanuit intake.\\n\\nPas nu de businesslogica aan en lever .dll + .addin op.", f"Auto-build voor taak: $TASK_ID\\nTrace: $TRACE_ID\\nIssue: #$ISSUE_NUMBER")
+s=s.replace("Deze add-in is automatisch opgebouwd vanuit intake.\\n\\nPas nu de businesslogica aan en lever .dll + .addin op.", f"Auto-build voor taak: $TASK_ID\\nTrace: $TRACE_ID\\nIssue: #$ISSUE_NUMBER\\nBedrijf: $COMPANY_NAME")
 p.write_text(s)
+
+p2=Path("$SRC_DIR/App.cs")
+s2=p2.read_text()
+s2=s2.replace("__COMPANY_NAME__", "$COMPANY_NAME")
+p2.write_text(s2)
 PY
 
 pushd "$SRC_DIR" >/dev/null
@@ -43,11 +51,11 @@ cp "$SRC_DIR/bin/Release/net8.0-windows/AutoAddin.dll" "$ART_DIR/${TASK_ID}.dll"
 cat > "$ART_DIR/${TASK_ID}.addin" <<XML
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
 <RevitAddIns>
-  <AddIn Type="Command">
-    <Name>${TASK_ID}</Name>
+  <AddIn Type="Application">
+    <Name>${COMPANY_NAME} Tool</Name>
     <Assembly>C:\\Users\\Robin\\AppData\\Roaming\\Autodesk\\Revit\\Addins\\2025\\${TASK_ID}.dll</Assembly>
     <AddInId>8A5E1285-31D3-4E9B-91F2-8DBEA3E7358D</AddInId>
-    <FullClassName>AutoAddin.AutoCommand</FullClassName>
+    <FullClassName>AutoAddin.App</FullClassName>
     <VendorId>RBIN</VendorId>
     <VendorDescription>Robin BIM Automation</VendorDescription>
   </AddIn>

@@ -20,6 +20,7 @@ export default async function handler(req, res) {
     const addinType = task?.intake?.addinType || 'Algemeen';
     const text = [
       `🆕 Nieuwe intake (awaiting GO)`,
+      `Athena research: requested`,
       `Task: ${task.taskId}`,
       `Trace: ${task.traceId}`,
       `Klant: ${task.customer?.name || '-'} (${task.customer?.company || '-'})`,
