@@ -20,7 +20,7 @@ MVP add-in om meerdere sheets tegelijk te hernoemen met:
 
 ```bash
 export PATH="$HOME/.dotnet:$PATH"
-cd /home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1
+cd /home/rubiorobin/.openclaw/workspace/addins/eigen-addins/revit-batch-sheet-renamer-v1
 dotnet restore BatchSheetRenamer.sln
 dotnet build BatchSheetRenamer.sln -c Release -v minimal
 ```

@@ -386,3 +386,24 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 5. **Open actions**
 - Owner Zeus/codeur: build- en releasepaden standaardiseren op `addins/eigen-addins/*`.
 
+## 2026-02-25 Uitvoering + voortgang Batch Sheet Renamer (Robin)
+1. **Facts**
+- Robin gaf opdracht om de nieuwe structuur direct uit te voeren en tegelijk door te pakken op de add-in.
+- Oude paden zijn opgeruimd uit de actieve root en vervangen door compatibiliteits-symlinks.
+- Batch Sheet Renamer is opnieuw gebouwd vanuit `addins/eigen-addins/revit-batch-sheet-renamer-v1`.
+
+2. **Decisions**
+- Actieve bronlocatie voor Batch Sheet Renamer is nu `addins/eigen-addins/revit-batch-sheet-renamer-v1`.
+- Inkomende intake `BUILD-NX-MM29UCNL` is bijgewerkt naar build geslaagd en klaar voor QA/Revit runtime test.
+
+3. **Ideas**
+- Volgende stap: QA-gate draaien op Windows/Revit testmachine met vaste checklist en screenshot-bewijs.
+
+4. **Artifacts**
+- `addins/eigen-addins/revit-batch-sheet-renamer-v1/README.md`
+- `addins/eigen-addins/revit-batch-sheet-renamer-v1/artifacts/BatchSheetRenamer.dll`
+- `addins/ingekomen-addins/2026/BUILD-NX-MM29UCNL/status.md`
+
+5. **Open actions**
+- Owner Robin/QA: runtime-validatie in Revit 2025 en GO/NO-GO terugkoppeling in Directie.
+
