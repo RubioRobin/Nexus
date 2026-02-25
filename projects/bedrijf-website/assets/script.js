@@ -23,7 +23,7 @@ if(form){
   track('intake_form_view');
   form.addEventListener('focusin',()=>track('intake_form_start'),{once:true});
 
-  const buildTrelloText=(data,traceId)=>{
+  const buildIntakeText=(data,traceId)=>{
     return [
       `# Intake ${traceId}`,
       `Naam: ${data.name || '-'}`,
@@ -57,9 +57,9 @@ if(form){
     }
 
     const traceId=`NX-${Date.now().toString(36).toUpperCase()}`;
-    const trelloText=buildTrelloText(data,traceId);
+    const intakeText=buildIntakeText(data,traceId);
     const submissions=JSON.parse(localStorage.getItem('nexus_intakes')||'[]');
-    submissions.push({traceId,createdAt:new Date().toISOString(),trelloText,...data});
+    submissions.push({traceId,createdAt:new Date().toISOString(),intakeText,...data});
     localStorage.setItem('nexus_intakes',JSON.stringify(submissions.slice(-50)));
 
     feedback.textContent=`Intake ontvangen. Referentie: ${traceId}. We komen binnen 1 werkdag bij je terug.`;
@@ -67,27 +67,27 @@ if(form){
     track('intake_form_submit',{traceId,urgency:data.urgency,budget:data.budget});
     form.reset();
 
-    const payload=document.getElementById('trelloPayload');
+    const payload=document.getElementById('intakePayload');
     if(payload){
       payload.hidden=false;
-      payload.textContent=trelloText;
+      payload.textContent=intakeText;
     }
   });
 
-  const btnExport=document.getElementById('btnTrelloExport');
+  const btnExport=document.getElementById('btnIntakeExport');
   if(btnExport){
     btnExport.addEventListener('click',()=>{
       const fd=new FormData(form);
       const data=Object.fromEntries(fd.entries());
       const traceId=`NX-DRAFT-${Date.now().toString(36).toUpperCase()}`;
-      const text=buildTrelloText(data,traceId);
-      const payload=document.getElementById('trelloPayload');
+      const text=buildIntakeText(data,traceId);
+      const payload=document.getElementById('intakePayload');
       if(payload){
         payload.hidden=false;
         payload.textContent=text;
       }
       navigator.clipboard?.writeText(text).catch(()=>{});
-      track('intake_trello_export',{traceId});
+      track('intake_export',{traceId});
     });
   }
 }

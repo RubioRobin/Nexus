@@ -172,4 +172,23 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 - `ops/WEB_INTAKE_PLATFORM_IMPLEMENTATION_V1.md`
 
 5. **Open actions**
-- Owner Zeus/codeur: v2 backend handoff naar Trello implementeren na Robin GO.
+- Owner Zeus/codeur: v2 backend handoff implementeren naar gekozen backlogkanaal (geen Trello).
+
+## 2026-02-25 Intake kanaalwijziging
+1. **Facts**
+- Robin gaf aan dat Trello niet meer gebruikt wordt.
+
+2. **Decisions**
+- Intakeflow verwijst niet meer naar Trello.
+- Export is generieke intake-samenvatting; backend-koppeling wordt naar nieuw kanaal gezet.
+
+3. **Ideas**
+- Koppelen aan GitHub Issues of interne DB/API als standaard intake sink.
+
+4. **Artifacts**
+- `projects/bedrijf-website/contact.html`
+- `projects/bedrijf-website/assets/script.js`
+- `ops/WEB_INTAKE_PLATFORM_IMPLEMENTATION_V1.md`
+
+5. **Open actions**
+- Owner Robin/Zeus: doel-backlogkanaal kiezen voor v2 directe intake write.

@@ -9,7 +9,7 @@ Owner: Zeus
 - Validatie: client-side required velden + minimale probleemlengte.
 - Storage (tijdelijk): `localStorage` key `nexus_intakes` met laatste 50 submissions.
 - Tracking (tijdelijk): `localStorage` key `nexus_events` voor CTA/form events.
-- Intake handoff: Trello-kaarttekst generator in UI (`Genereer Trello-kaarttekst`) + copy-to-clipboard.
+- Intake handoff: intake-samenvatting generator in UI (`Genereer intake-samenvatting`) + copy-to-clipboard.
 
 ## API/form contract
 
@@ -31,13 +31,13 @@ Derived fields:
 
 - Site is file-based/static en direct wijzigbaar in `projects/bedrijf-website`.
 - Geen backend secrets nodig voor huidige versie.
-- Volgende stap (v2): server endpoint toevoegen voor directe Trello API write.
+- Volgende stap (v2): server endpoint toevoegen voor directe intake-write naar gekozen backlogkanaal (bijv. GitHub Issues/DB/API).
 
 ## Test checklist
 
 - [ ] Home CTA “Start intake” werkt vanaf meerdere pagina’s.
 - [ ] Form validatie blokkeert lege/onvolledige submit.
 - [ ] Geldige submit toont trace ID bevestiging.
-- [ ] Trello export knop toont payload en kopieert tekst.
+- [ ] Intake-export knop toont payload en kopieert tekst.
 - [ ] `nexus_events` bevat cta/form events.
 - [ ] Mobiele weergave van formulier blijft leesbaar.
