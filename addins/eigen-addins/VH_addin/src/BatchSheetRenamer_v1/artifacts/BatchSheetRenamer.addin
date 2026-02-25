@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<RevitAddIns>
+  <AddIn Type="Command">
+    <Name>Batch Sheet Renamer</Name>
+    <Assembly>/home/rubiorobin/.openclaw/workspace/projects/revit-batch-sheet-renamer-v1/artifacts/BatchSheetRenamer.dll</Assembly>
+    <AddInId>8A5E1285-31D3-4E9B-91F2-8DBEA3E7358D</AddInId>
+    <FullClassName>BatchSheetRenamer.BatchSheetRenamerCommand</FullClassName>
+    <VendorId>RBIN</VendorId>
+    <VendorDescription>Robin BIM Automation</VendorDescription>
+  </AddIn>
+</RevitAddIns>
