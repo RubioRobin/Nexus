@@ -192,3 +192,22 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 
 5. **Open actions**
 - Owner Robin/Zeus: doel-backlogkanaal kiezen voor v2 directe intake write.
+
+## 2026-02-25 Intake-to-build verduidelijking (Robin)
+1. **Facts**
+- Robin verduidelijkte dat intake bedoeld is voor echte klanten en direct moet leiden tot add-in bouwopdracht.
+
+2. **Decisions**
+- Website intakeflow is aangepast naar directe build-opdracht generatie (geen lead-only flow).
+- Intake bevat nu add-in type + Revit versie + optionele bestandenlink voor snellere start.
+
+3. **Ideas**
+- v3: centrale queue met directe toewijzing naar codeuragent (in plaats van localStorage).
+
+4. **Artifacts**
+- `projects/bedrijf-website/contact.html`
+- `projects/bedrijf-website/assets/script.js`
+- `ops/WEB_INTAKE_PLATFORM_IMPLEMENTATION_V1.md`
+
+5. **Open actions**
+- Owner Zeus/codeur: centrale backend queue + auto-assign implementeren na Robin GO.

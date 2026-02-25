@@ -1,6 +1,6 @@
 <!doctype html><html lang="nl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Start Intake — NEXUS</title><link rel="stylesheet" href="assets/styles.css"></head><body>
 <header class="site-header"><div class="container nav-wrap"><a class="brand" href="index.html">NEXUS</a><nav><a href="index.html">Home</a><a href="diensten.html">Oplossingen</a><a href="cases.html">Cases</a><a href="over-ons.html">Werkwijze</a><a class="active" href="contact.html">Start intake</a></nav></div></header>
-<main><section><div class="container"><h1 class="section-title reveal">Start intake</h1><p class="section-sub reveal">Vertel kort het probleem. Wij vertalen dit naar scope, aanpak en opleverpad.</p>
+<main><section><div class="container"><h1 class="section-title reveal">Start intake</h1><p class="section-sub reveal">Omschrijf je probleem. Het systeem maakt direct een build-opdracht voor een Revit add-in.</p>
 
 <div class="card reveal">
 <form id="intakeForm" class="intake-form" novalidate>
@@ -9,16 +9,25 @@
     <label>Bedrijf / team<input type="text" name="company" required placeholder="Nexus" /></label>
   </div>
   <label>E-mail<input type="email" name="email" required placeholder="naam@bedrijf.nl" /></label>
-  <label>Wat kost nu het meeste tijd?<textarea name="problem" required minlength="20" placeholder="Bijv. handmatig sheets hernoemen en controleren bij elke release."></textarea></label>
+
   <div class="grid two">
-    <label>Gewenste uitkomst<input type="text" name="outcome" required placeholder="Bijv. 70% minder handwerk" /></label>
-    <label>Urgentie<select name="urgency" required><option value="">Kies</option><option>Laag (deze maand)</option><option>Midden (deze week)</option><option>Hoog (zsm)</option></select></label>
+    <label>Revit versie<select name="revitVersion" required><option value="">Kies</option><option>2024</option><option selected>2025</option><option>2026</option></select></label>
+    <label>Type add-in<select name="addinType" required><option value="">Kies</option><option>Sheet automatisering</option><option>View / export tooling</option><option>QA / validatie</option><option>Parameterbeheer</option><option>Anders</option></select></label>
   </div>
-  <label>Budgetindicatie<select name="budget" required><option value="">Kies</option><option>€1k–€3k</option><option>€3k–€7.5k</option><option>€7.5k+</option></select></label>
+
+  <label>Wat kost nu het meeste tijd?<textarea name="problem" required minlength="20" placeholder="Bijv. handmatig sheets hernoemen en controleren bij elke release."></textarea></label>
+  <label>Gewenste uitkomst<input type="text" name="outcome" required placeholder="Bijv. 70% minder handwerk" /></label>
+
+  <div class="grid two">
+    <label>Urgentie<select name="urgency" required><option value="">Kies</option><option>Laag (deze maand)</option><option>Midden (deze week)</option><option>Hoog (zsm)</option></select></label>
+    <label>Budgetindicatie<select name="budget" required><option value="">Kies</option><option>€1k–€3k</option><option>€3k–€7.5k</option><option>€7.5k+</option></select></label>
+  </div>
+
+  <label>Bestanden / voorbeelden (link)<input type="url" name="filesUrl" placeholder="https://... (Drive, GitHub, WeTransfer, etc.)" /></label>
 
   <div class="actions">
-    <button class="btn primary" type="submit">Verstuur intake</button>
-    <button class="btn ghost" type="button" id="btnIntakeExport">Genereer intake-samenvatting</button>
+    <button class="btn primary" type="submit">Start build-opdracht</button>
+    <button class="btn ghost" type="button" id="btnBuildExport">Genereer build-opdracht</button>
   </div>
   <p id="formFeedback" class="form-feedback" aria-live="polite"></p>
   <pre id="intakePayload" class="trello-payload" hidden></pre>
