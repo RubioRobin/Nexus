@@ -10,6 +10,7 @@ if (!token) {
 
 const allowRaw = process.env.TELEGRAM_ALLOWED_CHAT_IDS || '';
 const allow = new Set(allowRaw.split(',').map(s => s.trim()).filter(Boolean));
+const releaseChatId = (process.env.TELEGRAM_RELEASE_CHAT_ID || '').trim();
 
 const statePath = '/home/rubiorobin/.openclaw/workspace/ops/state/pipeline_state.json';
 const offPath = '/home/rubiorobin/.openclaw/workspace/ops/state/telegram_offset.json';
@@ -99,7 +100,14 @@ for (const u of (data.result || [])) {
   if (decision.action === 'Go') {
     const build = startBuild(decision.id);
     if (build.ok) {
-      await send(chatId, `✅ GO verwerkt voor ${decision.id}. Build gestart/afgerond voor ${build.buildTaskId}.\nArtifacts: ${build.artifactDir}`);
+      const releaseLine = build.release?.ok && build.release?.url
+        ? `\nGitHub release: ${build.release.url}`
+        : `\nGitHub release: niet gelukt (${build.release?.error ? 'zie logs' : 'onbekend'})`;
+      const msgOut = `✅ GO verwerkt voor ${decision.id}. Build gestart/afgerond voor ${build.buildTaskId}.\nArtifacts: ${build.artifactDir}${releaseLine}`;
+      await send(chatId, msgOut);
+      if (releaseChatId && releaseChatId !== chatId) {
+        await send(releaseChatId, `📦 Release update\n${msgOut}`);
+      }
     } else {
       await send(chatId, `⚠️ GO verwerkt voor ${decision.id}, maar build faalde.\n${build.detail || 'onbekende fout'}`);
     }

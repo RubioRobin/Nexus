@@ -76,10 +76,35 @@ if (run.status !== 0) {
   process.exit(2);
 }
 
+const files = fs.existsSync(artifactDir)
+  ? fs.readdirSync(artifactDir).map(f => path.join(artifactDir, f))
+  : [];
+
+let release = { ok: false, url: null, tag: null, error: null };
+if (files.length) {
+  const tag = `${buildTaskId}-${Date.now()}`;
+  const title = `${buildTaskId} artifacts`;
+  const notes = `Auto release vanaf Pi\n\nIntake: ${id}\nTrace: ${traceId}`;
+
+  const rel = spawnSync('gh', ['release', 'create', tag, ...files, '-t', title, '-n', notes], {
+    cwd: root,
+    encoding: 'utf8'
+  });
+
+  if (rel.status === 0) {
+    const out = (rel.stdout || '').trim();
+    const url = out.split('\n').find(x => x.startsWith('http')) || null;
+    release = { ok: true, url, tag, error: null };
+  } else {
+    release = { ok: false, url: null, tag, error: (rel.stderr || rel.stdout || '').slice(-2000) };
+  }
+}
+
 console.log(JSON.stringify({
   ok: true,
   id,
   buildTaskId,
   traceId,
-  artifactDir
+  artifactDir,
+  release
 }));
