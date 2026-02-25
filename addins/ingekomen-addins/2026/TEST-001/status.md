@@ -1,10 +1,9 @@
 # Status - TEST-001
 
-- Pipeline: Intake -> QA runtime -> Directie GO/NO-GO
-- Huidige status: Test gestart
+- Pipeline: Intake -> Build -> QA -> Directie GO/NO-GO
+- Huidige status: QA runtime gestart (Revit 2025)
 - Owner: Zeus/QA
 - Linkt aan build: BUILD-NX-MM29UCNL
 
-## Test artifacts
-- Checklist: `addins/eigen-addins/revit-batch-sheet-renamer-v1/QA_CHECKLIST_REVT2025.md`
-- Result template: `addins/eigen-addins/revit-batch-sheet-renamer-v1/QA_RESULT_TEMPLATE.md`
+## Build artifacts
+- Verwacht pad: projects/intake-builds/BUILD-NX-MM29UCNL/artifacts/
