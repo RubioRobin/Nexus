@@ -52,3 +52,22 @@ Purpose: persistent bedrijfsgeheugen voor Zeus + agents, zodat besluiten/ideeën
 - Owner Zeus: monitor eerste productie-run van Task A (Batch Sheet Renamer) tot QA handoff.
 - Owner Robin: JA/NEE keuzes blijven in privéchat/Directie vastleggen voor auditspoor.
 - Owner Zeus: wekelijkse roster-review uitvoeren volgens `ops/AGENT_ROSTER_STATUS.md`.
+
+## 2026-02-25 13:22 UI/Ribbon standaard (Robin)
+1. **Facts**
+- Robin bevestigde dat de add-in zichtbaar is en gaf aanvullende standaarden voor toekomstige builds.
+- Robin wil meerdere XAML-voorbeelden aanleveren als referentie-‘database’ voor gewenste UI.
+
+2. **Decisions**
+- Revit add-in UI moet aansluiten op de website-UI.
+- Elke add-in moet een eigen Ribbon-knop krijgen.
+- Voorkeur: Ribbon-knop met 32x32 icoon (icoon mag later worden toegevoegd).
+
+3. **Ideas**
+- Centrale XAML style library + component mapping naar website design-system, zodat UI consistent en sneller herbruikbaar is.
+
+4. **Artifacts**
+- Webchat bericht Robin, 2026-02-25 13:22 (Europe/Amsterdam).
+
+5. **Open actions**
+- Owner Zeus/codeur: inkomende XAML-snippets structureren in een herbruikbare referentie-database voor Revit UI-implementaties.
