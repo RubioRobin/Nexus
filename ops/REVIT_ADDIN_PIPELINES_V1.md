@@ -159,4 +159,5 @@ Anders: altijd Robin GO nodig.
 - Centrale state: `ops/state/pipeline_state.json`
 - CLI state beheer: `scripts/pipeline_state_cli.mjs`
 - Telegram command parser: `scripts/telegram_decision_parser.mjs`
+- Telegram decision applier (state update): `scripts/apply_telegram_decision.mjs`
 - 08:00 brief generator: `scripts/generate_0800_brief.mjs`

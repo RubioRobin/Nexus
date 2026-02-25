@@ -1,0 +1,20 @@
+# OpenClaw local/generated
+external-repos/
+Nexus/
+VH_addin/
+backups/
+
+# Build/runtime artifacts
+**/bin/
+**/obj/
+**/build-logs/
+**/artifacts/*.dll
+**/dotnet-install.sh
+
+# Node deps/runtime
+**/node_modules/
+**/package-lock.json
+projects/bedrijf-website/backend/data/
+
+# Local notes/transcripts
+memory/*.md
