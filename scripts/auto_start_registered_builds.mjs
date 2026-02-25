@@ -8,7 +8,6 @@ const intakeYearDir = path.join(root, 'addins/ingekomen-addins/2026');
 const stateFile = path.join(root, 'ops/state/auto_started_builds.json');
 
 const token = process.env.TELEGRAM_BOT_TOKEN || '';
-const planningChatId = (process.env.TELEGRAM_PLANNING_CHAT_ID || '-1003575020150').trim();
 const codeursChatId = (process.env.TELEGRAM_CODEURS_CHAT_ID || '-1003826367901').trim();
 const releaseChatId = (process.env.TELEGRAM_RELEASE_CHAT_ID || '-1003543098532').trim();
 
@@ -66,7 +65,7 @@ const run = async () => {
     });
 
     if (r.status !== 0) {
-      await send(planningChatId, `⚠️ Auto-start build mislukt voor ${buildId}. Check Pi logs.`);
+      await send(codeursChatId, `⚠️ Auto-start build mislukt voor ${buildId}. Check Pi logs.`);
       continue;
     }
 
@@ -74,10 +73,11 @@ const run = async () => {
     try { out = JSON.parse((r.stdout || '').trim()); } catch {}
 
     const releaseUrl = out?.release?.url || 'n.v.t.';
-    const msg = `🛠️ Auto-run gestart/afgerond voor ${buildId}.\nArtifacts: ${out?.artifactDir || 'onbekend'}\nRelease: ${releaseUrl}`;
-    await send(planningChatId, msg);
-    await send(codeursChatId, msg);
-    await send(releaseChatId, `📦 Release update\n${msg}`);
+    const startMsg = `🛠️ Codeurs gestart voor ${buildId}.\nBuild draait op Pi.`;
+    const productMsg = `📦 Product gereed voor ${buildId}.\nArtifacts: ${out?.artifactDir || 'onbekend'}\nRelease: ${releaseUrl}`;
+
+    await send(codeursChatId, startMsg);
+    await send(releaseChatId, productMsg);
 
     state.processed[buildId] = true;
   }

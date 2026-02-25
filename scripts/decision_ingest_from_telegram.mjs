@@ -10,8 +10,7 @@ if (!token) {
 
 const allowRaw = process.env.TELEGRAM_ALLOWED_CHAT_IDS || '';
 const allow = new Set(allowRaw.split(',').map(s => s.trim()).filter(Boolean));
-const releaseChatId = (process.env.TELEGRAM_RELEASE_CHAT_ID || '').trim();
-const planningChatId = (process.env.TELEGRAM_PLANNING_CHAT_ID || '-1003575020150').trim();
+const releaseChatId = (process.env.TELEGRAM_RELEASE_CHAT_ID || '-1003543098532').trim();
 const codeursChatId = (process.env.TELEGRAM_CODEURS_CHAT_ID || '-1003826367901').trim();
 
 const statePath = '/home/rubiorobin/.openclaw/workspace/ops/state/pipeline_state.json';
@@ -140,11 +139,10 @@ for (const u of (data.result || [])) {
       await send(chatId, msgOut);
 
       const laneMsg = `🛠️ GO ${resolvedId} verwerkt.\nCodeurs-run gestart op Pi voor ${build.buildTaskId}.\nArtifacts: ${build.artifactDir}`;
-      if (planningChatId) await send(planningChatId, laneMsg);
       if (codeursChatId) await send(codeursChatId, laneMsg);
 
-      if (releaseChatId && releaseChatId !== chatId) {
-        await send(releaseChatId, `📦 Release update\n${msgOut}`);
+      if (releaseChatId) {
+        await send(releaseChatId, `📦 Product gereed\n${msgOut}`);
       }
     } else {
       await send(chatId, `⚠️ GO verwerkt voor ${resolvedId}, maar build faalde.\n${build.detail || 'onbekende fout'}`);
