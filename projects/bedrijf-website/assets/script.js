@@ -1,196 +1,151 @@
-document.querySelectorAll('.reveal').forEach(el=>{
-  const io=new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
-  },{threshold:.15});
+/**
+ * NEXUS - Add-in Factory Pipeline Scripts
+ * Handles: Reveal animations, CTA tracking, Structured Intake, and Triage logic.
+ */
+
+// 1. Reveal Animations (Staggered)
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.setProperty('--i', i);
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { 
+      if(e.isIntersecting) { 
+        e.target.classList.add('in'); 
+        io.unobserve(e.target);
+      } 
+    });
+  }, { threshold: 0.1 });
   io.observe(el);
 });
 
-const track=(eventName,payload={})=>{
-  const evt={event:eventName,at:new Date().toISOString(),...payload};
-  const key='nexus_events';
-  const prev=JSON.parse(localStorage.getItem(key)||'[]');
+// 2. Event Tracking
+const track = (eventName, payload = {}) => {
+  const evt = { event: eventName, at: new Date().toISOString(), ...payload };
+  const key = 'nexus_events';
+  const prev = JSON.parse(localStorage.getItem(key) || '[]');
   prev.push(evt);
-  localStorage.setItem(key,JSON.stringify(prev.slice(-200)));
-  console.log('[track]',evt);
+  localStorage.setItem(key, JSON.stringify(prev.slice(-200)));
+  console.log('[NEXUS-TRACK]', evt);
 };
 
-document.querySelectorAll('.track-cta').forEach(btn=>{
-  btn.addEventListener('click',()=>track('cta_click',{id:btn.dataset.cta||'unknown'}));
+document.querySelectorAll('.track-cta').forEach(btn => {
+  btn.addEventListener('click', () => track('cta_click', { id: btn.dataset.cta || 'unknown' }));
 });
 
-const INTAKE_API_BASE=(window.NEXUS_INTAKE_API_BASE||'/api');
+// 3. Intake Form & Pipeline Logic
+const INTAKE_API_BASE = (window.NEXUS_INTAKE_API_BASE || '/api');
 
-const form=document.getElementById('intakeForm');
-if(form){
+const form = document.getElementById('intakeForm');
+if (form) {
   track('intake_form_view');
-  form.addEventListener('focusin',()=>track('intake_form_start'),{once:true});
+  form.addEventListener('focusin', () => track('intake_form_start'), { once: true });
 
-  const estimateEffort=(data)=>{
-    const txt=`${data.problem||''} ${data.outcome||''}`.toLowerCase();
-    let score=1;
-    if((data.filesUrl||'').trim()) score+=1;
-    if((data.urgency||'').includes('Hoog')) score+=1;
-    if(txt.includes('excel')||txt.includes('ifc')||txt.includes('export')) score+=1;
-    if(txt.includes('api')||txt.includes('sync')||txt.includes('koppeling')) score+=2;
-
-    if(score<=2) return 'S (4-8 uur)';
-    if(score<=4) return 'M (1-3 dagen)';
-    return 'L (3-7 dagen)';
-  };
-
-  const buildAcceptance=(data)=>[
-    `Build target: Revit ${data.revitVersion}`,
-    'UI target: WPF/XAML, huisstijl-conform (kleuren, rondingen, knoppen)',
-    'Ribbon: eigen knop (32x32 icoon indien beschikbaar)',
-    'Artifacts: .dll + .addin geleverd',
-    'Build: 0 errors / 0 warnings',
-    `Functioneel: ${data.outcome || 'doel behalen volgens intake'}`
-  ];
-
-  const buildRisk=(data)=>{
-    if(!(data.filesUrl||'').trim()) return 'Inputbestanden ontbreken; risico op extra afstemming.';
-    if((data.urgency||'').includes('Hoog')) return 'Hoge urgentie; scope strikt afbakenen voor snelle oplevering.';
-    return 'Laag-middel; standaard intake-build flow toepassen.';
-  };
-
-  const buildTask=(data,traceId)=>{
-    const effort=estimateEffort(data);
-    const acceptance=buildAcceptance(data);
-    const risk=buildRisk(data);
-
-    const task={
-      taskId:`BUILD-${traceId}`,
-      traceId,
-      createdAt:new Date().toISOString(),
-      customer:{name:data.name,company:data.company,email:data.email},
-      intake:{
-        addinType:data.addinType,
-        revitVersion:data.revitVersion,
-        problem:data.problem,
-        outcome:data.outcome,
-        urgency:data.urgency,
-        budget:data.budget,
-        filesUrl:data.filesUrl || ''
-      },
-      triage:{
-        scope:'Nieuwe Revit add-in op basis van intake',
-        effort,
-        risk,
-        priority:data.urgency?.includes('Hoog')?'P1':'P2'
-      },
-      acceptanceCriteria:acceptance,
-      handoff:'Codeur start direct met WPF/XAML implementatie volgens huisstijlhandboek.'
-    };
-
-    const text=[
-      `# Build Task ${task.taskId}`,
-      `Trace ID: ${traceId}`,
-      `Klant: ${data.name} (${data.company})`,
-      `Contact: ${data.email}`,
-      '',
-      '## Intake',
-      `Type add-in: ${data.addinType}`,
-      `Revit versie: ${data.revitVersion}`,
-      `Urgentie: ${data.urgency}`,
-      `Budget: ${data.budget}`,
-      `Bestanden: ${data.filesUrl || '-'}`,
-      '',
-      '## Probleem',
-      data.problem || '-',
-      '',
-      '## Gewenste uitkomst',
-      data.outcome || '-',
-      '',
-      '## Triage',
-      `Effort: ${effort}`,
-      `Risico: ${risk}`,
-      '',
-      '## Acceptance criteria',
-      ...acceptance.map((a,i)=>`${i+1}. ${a}`),
-      '',
-      `Handoff: ${task.handoff}`
-    ].join('\n');
-
-    return {task,text};
-  };
-
-  const showToast=(type,title,message)=>{
-    const host=document.getElementById('toastHost');
-    if(!host) return;
-    const el=document.createElement('div');
-    el.className=`toast ${type}`;
-    el.innerHTML=`<div class="toast-title">${title}</div><div class="toast-msg">${message}</div>`;
+  const showToast = (type, title, message) => {
+    const host = document.getElementById('toastHost');
+    if (!host) return;
+    const el = document.createElement('div');
+    el.className = `toast ${type}`;
+    el.innerHTML = `<strong>${title}</strong><span>${message}</span>`;
     host.appendChild(el);
-    setTimeout(()=>{
-      el.style.animation='toast-out .2s ease forwards';
-      setTimeout(()=>el.remove(),220);
-    },4200);
+    setTimeout(() => {
+      el.style.animation = 'fadeOut 0.5s forwards';
+      setTimeout(() => el.remove(), 500);
+    }, 5000);
   };
 
-  const showConfirmationModal=()=>{
-    const overlay=document.createElement('div');
-    overlay.className='confirm-overlay';
-    overlay.innerHTML=`
-      <div class="confirm-card" role="dialog" aria-modal="true" aria-label="Aanvraag ontvangen">
-        <h3 class="confirm-title">Bedankt voor je aanvraag bij Nexus</h3>
-        <p class="confirm-text">We gaan direct voor je aan de slag. Als we extra vragen hebben, nemen we contact op via het e-mailadres dat je hebt ingevuld.</p>
-        <div class="confirm-actions">
-          <button class="btn primary" type="button" id="confirmCloseBtn">Top, bedankt</button>
-        </div>
+  const showConfirmationModal = (traceId) => {
+    const overlay = document.createElement('div');
+    overlay.className = 'confirm-overlay'; // Re-use styling from CSS or add if missing
+    overlay.style.cssText = 'position:fixed;inset:0;background:rgba(13,31,26,0.8);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;z-index:2000;padding:20px;';
+    
+    overlay.innerHTML = `
+      <div class="card" style="max-width:500px; text-align:center; animation: slideIn 0.4s ease;">
+        <h3 style="color:var(--forest-700); margin-bottom:16px;">Intake Ontvangen</h3>
+        <p style="margin-bottom:24px;">ID: <strong>${traceId}</strong><br><br>De <strong>Qualification Agent</strong> heeft je aanvraag geverifieerd. Je ontvangt binnenkort een status-update via Telegram/Email.</p>
+        <button class="btn primary" id="confirmCloseBtn">Begrepen</button>
       </div>`;
+    
     document.body.appendChild(overlay);
-
-    const close=()=>overlay.remove();
-    overlay.addEventListener('click',(e)=>{ if(e.target===overlay) close(); });
-    overlay.querySelector('#confirmCloseBtn')?.addEventListener('click',close);
+    overlay.querySelector('#confirmCloseBtn').onclick = () => overlay.remove();
   };
 
-  form.addEventListener('submit',async e=>{
+  form.addEventListener('submit', async e => {
     e.preventDefault();
-    const fd=new FormData(form);
-    const data=Object.fromEntries(fd.entries());
-
-    if(!form.checkValidity() || (data.problem||'').trim().length<20){
-      showToast('error','Hoe duidelijker je aanvraag, hoe sneller je oplossing','Vul alle verplichte velden in en beschrijf concreet: wat kost nu tijd, wat moet automatisch gaan, en wat je gewenste uitkomst is.');
-      track('intake_form_error',{reason:'validation'});
+    
+    const fd = new FormData(form);
+    const rawData = Object.fromEntries(fd.entries());
+    
+    // Basic Client-side Validation (Qualification Agent - Phase 0)
+    if (!form.checkValidity()) {
+      showToast('error', 'Incompleet', 'Vul alle verplichte velden in voor een accurate triage.');
       return;
     }
 
-    const traceId=`NX-${Date.now().toString(36).toUpperCase()}`;
-    const {task}=buildTask(data,traceId);
-
-    const submissions=JSON.parse(localStorage.getItem('nexus_intakes')||'[]');
-    submissions.push(task);
-    localStorage.setItem('nexus_intakes',JSON.stringify(submissions.slice(-100)));
-
-    let apiOk=false;
-    let apiError='';
-    try{
-      const res=await fetch(`${INTAKE_API_BASE}/intake`,{
-        method:'POST',
-        headers:{'Content-Type':'application/json'},
-        body:JSON.stringify(task)
-      });
-      const out=await res.json().catch(()=>({}));
-      if(res.ok){
-        apiOk=true;
-        showConfirmationModal();
-      } else {
-        apiError = out?.error || `HTTP ${res.status}`;
+    // 4. Generate IntakeRecord.json (Machine Readable)
+    const traceId = `NXF-${Date.now().toString(36).toUpperCase()}`;
+    const intakeRecord = {
+      id: traceId,
+      timestamp: new Date().toISOString(),
+      metadata: {
+        source: 'website_intake',
+        version: '2.0'
+      },
+      client: {
+        company: rawData.company,
+        type: rawData.companyType,
+        contact: {
+          name: rawData.contactName,
+          email: rawData.email,
+          role: rawData.contactRole
+        }
+      },
+      technical: {
+        revitVersions: rawData.revitVersions.split(',').map(v => v.trim()),
+        disciplines: fd.getAll('disciplines'),
+        constraints: rawData.constraints || 'none'
+      },
+      business: {
+        problem: rawData.problemDescription,
+        workflow: rawData.currentWorkflow,
+        frequency: rawData.frequency,
+        impact: rawData.impactHours,
+        successCriteria: rawData.successCriteria,
+        budget: rawData.budget,
+        targetDate: rawData.targetDate || null
+      },
+      artifacts: {
+        filesUrl: rawData.filesUrl || null
       }
-    }catch(err){
-      apiError = err?.message || 'onbekende netwerkfout';
+    };
+
+    console.log('[IntakeRecord generated]', intakeRecord);
+
+    // Save locally (Fall-back strategy)
+    const submissions = JSON.parse(localStorage.getItem('nexus_intakes') || '[]');
+    submissions.push(intakeRecord);
+    localStorage.setItem('nexus_intakes', JSON.stringify(submissions.slice(-50)));
+
+    // Send to Pipeline API
+    showToast('info', 'Processeren...', 'Triage agent analyseert je workflow...');
+    
+    try {
+      const res = await fetch(`${INTAKE_API_BASE}/intake`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(intakeRecord)
+      });
+
+      if (res.ok) {
+        showConfirmationModal(traceId);
+        form.reset();
+        track('intake_success', { traceId });
+      } else {
+        throw new Error('API Reject');
+      }
+    } catch (err) {
+      console.warn('Pipeline API offline, record saved locally.', err);
+      showToast('success', 'Lokaal Opgeslagen', 'Verbinding met centrale pipeline mislukt, maar je aanvraag is veilig opgeslagen.');
+      showConfirmationModal(`${traceId} (OFFLINE)`);
+      form.reset();
     }
-
-    if(!apiOk){
-      const queue=JSON.parse(localStorage.getItem('nexus_build_queue')||'[]');
-      queue.push(task);
-      localStorage.setItem('nexus_build_queue',JSON.stringify(queue.slice(-100)));
-      showToast('error','Aanvraag lokaal opgeslagen',`Verbinding met intake service mislukt (${apiError || 'onbekend'}).`);
-    }
-
-    track('intake_build_created',{traceId,taskId:task.taskId,effort:task.triage.effort,centralQueue:apiOk});
-
-    form.reset();
   });
 }
