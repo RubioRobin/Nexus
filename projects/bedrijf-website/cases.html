@@ -5,7 +5,8 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Cases — NEXUS</title>
-  <meta name="description" content="Bekijk hoe NEXUS Revit-teams helpt met concrete automatisering en meetbare tijdwinst.">
+  <meta name="description"
+    content="Bekijk hoe NEXUS Revit-teams helpt met concrete automatisering en meetbare tijdwinst.">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
 
@@ -13,7 +14,6 @@
   <header class="site-header">
     <div class="container nav-wrap">
       <a class="brand" href="index.html">NEXUS</a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mainNav" aria-label="Open menu">☰</button>
       <nav id="mainNav">
         <a href="index.html">Home</a>
         <a href="diensten.html">Oplossingen</a>
@@ -25,73 +25,60 @@
   </header>
 
   <main>
-    <section class="hero case-hero">
+    <section class="hero" style="min-height: 50vh;">
       <div class="container">
-        <span class="badge">Proefversie add-ins</span>
-        <h1 class="section-title reveal">Start met een handjevol sterke add-ins</h1>
-        <p class="section-sub reveal">Dit is onze proefset: direct inzetbare add-ins als startpunt. Daarna bouwen we door naar een op maat gemaakte basis met abonnement voor doorontwikkeling en support.</p>
+        <h1 class="reveal">Impact door<br><span class="hero-accent">Automatisering.</span></h1>
+        <p class="reveal hero-lead">Bekijk hoe wij Revit-teams helpen met concrete add-ins die direct waarde toevoegen
+          aan het projectresultaat.</p>
       </div>
     </section>
 
-    <section style="padding-top:20px;">
-      <div class="container case-grid">
-        <article class="case-card reveal">
-          <div class="case-shot case-shot-1" aria-hidden="true"></div>
-          <div class="case-body">
+    <section style="padding-top: 40px;">
+      <div class="container">
+        <div class="grid">
+          <article class="card reveal">
             <h3>Batch Sheet Renamer</h3>
-            <p><strong>Probleem:</strong> handmatig hernoemen bij elke release zorgde voor vertraging en fouten.</p>
-            <p><strong>Aanpak:</strong> selectie + preview + bulk rename in WPF/XAML add-in met duidelijke feedback.</p>
-            <ul class="case-metrics">
-              <li><span>~70%</span> minder tijd op sheetnaam-updates</li>
-              <li><span>1 klikflow</span> voor terugkerende naamregels</li>
-            </ul>
-          </div>
-        </article>
+            <p><strong>Resultaat:</strong> Besparing van uren handwerk per release door geautomatiseerde naamgeving met
+              preview-modus.</p>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--glass-border);">
+            <p style="font-size: 0.9rem; color: var(--c-gold);">~70% tijdswinst op sheetbeheer</p>
+          </article>
 
-        <article class="case-card reveal">
-          <div class="case-shot case-shot-2" aria-hidden="true"></div>
-          <div class="case-body">
+          <article class="card reveal">
             <h3>Views → Sheets Generator</h3>
-            <p><strong>Probleem:</strong> repetitieve setup van detail sheets kostte veel engineer-uren.</p>
-            <p><strong>Aanpak:</strong> geautomatiseerde creatie met vaste naamregels en consistente projectstructuur.</p>
-            <ul class="case-metrics">
-              <li><span>60 → 10 min</span> per set</li>
-              <li><span>Hoger tempo</span> in vroege projectfases</li>
-            </ul>
-          </div>
-        </article>
+            <p><strong>Resultaat:</strong> Directe versnelling in de opzetfase van projecten. Consistente
+              projectstructuur zonder handmatige fouten.</p>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--glass-border);">
+            <p style="font-size: 0.9rem; color: var(--c-gold);">60 min → 10 min setup tijd</p>
+          </article>
 
-        <article class="case-card reveal">
-          <div class="case-shot case-shot-3" aria-hidden="true"></div>
-          <div class="case-body">
+          <article class="card reveal">
             <h3>QA Pre-flight Check</h3>
-            <p><strong>Probleem:</strong> fouten werden pas laat ontdekt, vlak voor release.</p>
-            <p><strong>Aanpak:</strong> geprioriteerde checkflow vóór release met heldere signalen voor het team.</p>
-            <ul class="case-metrics">
-              <li><span>Minder herstelwerk</span> in laatste sprint</li>
-              <li><span>Meer vertrouwen</span> in oplevermoment</li>
-            </ul>
-          </div>
-        </article>
+            <p><strong>Resultaat:</strong> Significante reductie van faalkosten door fouten te detecteren vóórdat ze het
+              model verlaten.</p>
+            <hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--glass-border);">
+            <p style="font-size: 0.9rem; color: var(--c-gold);">-30% herstelwerk in de eindfase</p>
+          </article>
+        </div>
       </div>
     </section>
 
-    <section>
-      <div class="container">
-        <div class="cta reveal">
-          <h2>Wil je starten met de proefversie?</h2>
-          <p>We starten met een compacte set add-ins. Daarna schalen we naar een maatwerkbasis + abonnement voor updates, verbeteringen en support.</p>
-          <div class="actions" style="justify-content:center;">
-            <a class="btn gold track-cta" data-cta="cases-start-intake" href="contact.html">Plan proefstart</a>
-            <a class="btn ghost" href="over-ons.html">Bekijk het abonnementsmodel</a>
-          </div>
+    <section class="container" style="padding-bottom: 120px;">
+      <div class="cta reveal">
+        <h2>Zelf resultaat boeken?</h2>
+        <p>Start met een pilot en ervaar de impact van Nexus automatisering binnen jouw team.</p>
+        <div class="actions" style="justify-content:center;">
+          <a class="btn primary track-cta" data-cta="cases-start-intake" href="contact.html">Plan Pilot Start</a>
+          <a class="btn ghost" href="over-ons.html">Onze Werkwijze</a>
         </div>
       </div>
     </section>
   </main>
 
   <footer class="footer">
-    <div class="container">&copy; 2026 NEXUS — Revit automatisering met resultaat.</div>
+    <div class="container">
+      <p>&copy; 2026 NEXUS — Professional Revit Automation. All rights reserved.</p>
+    </div>
   </footer>
 
   <script src="assets/script.js"></script>
