@@ -476,6 +476,87 @@ section {
   font-size: 1rem;
 }
 
+/* Mini cases */
+.mini-cases-section {
+  padding-top: 20px;
+}
+
+.mini-case-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.mini-case-card {
+  background: var(--white);
+  border: 1px solid rgba(27, 67, 50, 0.08);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 28px;
+}
+
+.mini-case-card h3 {
+  margin-bottom: 12px;
+  font-size: 1.2rem;
+}
+
+.mini-case-card p {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.mini-case-card .result {
+  margin-top: 14px;
+  margin-bottom: 0;
+  font-weight: 700;
+  color: var(--forest-800);
+}
+
+.mini-case-card .result span {
+  color: var(--success);
+}
+
+/* Packages */
+.packages-section {
+  padding-top: 10px;
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 22px;
+}
+
+.package-card {
+  background: var(--white);
+  border: 1px solid rgba(27, 67, 50, 0.1);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: 30px;
+}
+
+.package-card h3 {
+  margin-bottom: 12px;
+}
+
+.package-card p {
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.package-card-featured {
+  border-color: rgba(212, 175, 55, 0.4);
+  box-shadow: 0 14px 32px rgba(13, 31, 26, 0.1);
+  transform: translateY(-4px);
+}
+
+.price-range {
+  margin-top: 16px;
+  font-weight: 800;
+  color: var(--forest-900) !important;
+  font-size: 1.05rem;
+}
+
 /* Call to Action Section */
 .cta {
   background: var(--forest-900);
@@ -946,7 +1027,9 @@ textarea {
   .service-grid,
   .flow-grid,
   .value-grid,
-  .form-grid-2 {
+  .form-grid-2,
+  .mini-case-grid,
+  .package-grid {
     grid-template-columns: 1fr;
   }
 
